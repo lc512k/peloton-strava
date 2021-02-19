@@ -1,6 +1,7 @@
 const combos = require('./combos');
 const moment = require('moment');
 const mongo = require('./lib/mongo');
+const WorkoutModel = require('./models/workout');
 const RideModel = require('./models/ride');
 const classTypes = require('./meta/class-types.js');
 const instructorsHash = require('./meta/instructors-hash.js');
@@ -66,6 +67,7 @@ const buildStack = async () => {
 	const schedule = week[tomorrow];
 	console.log({tomorrow, schedule})
 
+	const response = [];
 
 	for (let classTemplate of schedule) {
 		const result = await RideModel.find({
@@ -83,19 +85,17 @@ const buildStack = async () => {
 
 		let counter = 5;
 		for (unweightedRide of result) {
+			// console.log('********** RIDE', unweightedRide.title)
 			let weight = 0;
 			let weights = {}
 
 			if (unweightedRide.title.toLowerCase().includes('rock')){
-				weight += -5;
 				weights.rock = -5;
 			}
 			if (unweightedRide.title.toLowerCase().includes('pop')){
-				weight += +1;
 				weights.pop = +1;
 			}
 			if (unweightedRide.title.toLowerCase().includes('HIIT')){
-				weight += -5;
 				weights.hiit = -5;
 			}
 			const name = instructorsHash[unweightedRide.instructor_id] ? instructorsHash[unweightedRide.instructor_id].name : 'NOT FOUND';
@@ -105,21 +105,34 @@ const buildStack = async () => {
 				const instructorWeight = totalInstructors - instructorPosition;
 				const instructorWeightNormalized = instructorWeight*10/totalInstructors;
 
-				console.log(instructorWeightNormalized, name)
-				weight += instructorWeightNormalized;
+				// console.log(instructorWeightNormalized, name)
 
 				weights.instructor = instructorWeightNormalized;
 			}
 
-			weight += counter
 			weights.recency = counter;
 
 			weights.ease = 10 - (unweightedRide.difficulty_rating_avg || 10);
-			weight += 10; 
 
-
-			unweightedRide.weight = weight;
 			unweightedRide.weights = weights;
+
+			const workout = await WorkoutModel.find({ride_id:unweightedRide._id});
+			const doneIt = workout.length > 0;
+			
+			if (doneIt) {
+				weights.doneIt = -5;
+			}
+
+			if (unweightedRide.title.includes(classTemplate.titleExcludeString)) {
+				weights.exludedString = -5;
+			}
+
+			// console.log({weights})
+			for (const label in weights) {
+				// console.log({label})
+				weight += weights[label];
+			}
+			unweightedRide.weight = weight;
 			counter = counter/1.1;
 		}
 
@@ -128,14 +141,15 @@ const buildStack = async () => {
 		// done
 
 		result.sort(compare);
-		console.log(result.slice(0,3))
+		console.log(result[0])
+		response.push(result[0]);
 		console.log('\n\n\n\n\n\n')
 	
 	}
 
 	mongo.mongoose.connection.close();
 
-	return {tomorrow}
+	return {response}
 }
 
 module.exports = {buildStack};

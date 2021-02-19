@@ -45,6 +45,7 @@ const buildRide = (duration, classType, titleSearchString) => {
 	const ride = {
 		classType: ['Music', 'Theme', 'Groove', 'Intervals', 'Live DJ', 'Climb', 'Power Zone'],
 		discipline: 'cycling',
+		titleExcludeString: 'Arms',
 		preferredInstructors: [
 			'Cody Rigsby',
 			'Robin Arzon'
