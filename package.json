@@ -1,0 +1,28 @@
+{
+  "name": "peloton-strava",
+  "version": "1.0.0",
+  "description": "sync gps coordinates to strava from peloton outdoor walks",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "load": "export $(cat .env | xargs) && node scripts/save-archive.js",
+    "start": "export $(cat .env | xargs) && node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lc512k/peloton-strava.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lc512k/peloton-strava/issues"
+  },
+  "homepage": "https://github.com/lc512k/peloton-strava#readme",
+  "dependencies": {
+    "eslint": "^7.20.0",
+    "express": "^4.17.1",
+    "moment": "^2.29.1",
+    "mongoose": "^5.11.17",
+    "node-fetch": "^2.6.1"
+  }
+}
