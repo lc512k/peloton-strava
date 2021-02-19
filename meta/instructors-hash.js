@@ -185,4 +185,4 @@ const instructorsHash = {
 	}
 }
 
-module.exports = {instructorsHash};
+module.exports = instructorsHash;
