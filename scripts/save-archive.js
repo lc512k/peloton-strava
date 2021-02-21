@@ -16,10 +16,8 @@ const run = async () => {
 		redirect: 'follow'
 	};
 	const response = await fetch(process.env.ARCHIVE_URL, requestOptions);
-	console.log({response})
 	const result = await response.json();
-	console.log({result})
-	console.log(result.data, result.data.length);
+	console.log('loaded', result.data.length);
 	const rides = result.data;
 
 	for (let i = 0; i < rides.length; i++) {
