@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "load": "export $(cat .env | xargs) && node scripts/save-archive.js",
-    "starts": "export $(cat .env | xargs) && node app.js"
+    "start": "export $(cat .env | xargs) && node app.js"
   },
   "repository": {
     "type": "git",
