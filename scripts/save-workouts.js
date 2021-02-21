@@ -1,17 +1,19 @@
 const mongo = require('../lib/mongo');
 const fetch = require('node-fetch');
+const login = require('./login');
 const instructorsHash = require('../meta/instructors-hash.js');
 
 const WorkoutModel = require('../models/workout');
 
 const run = async () => {
 	await mongo.client();
+	cookie = await login();
 	
 	const requestOptions = {
 		method: 'GET',
 		headers: {
 			'Peloton-Platform': 'web',
-			'Cookie': process.env.COOKIE
+			'Cookie': cookie
 		},
 		redirect: 'follow'
 	};

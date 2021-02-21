@@ -1,10 +1,11 @@
-const week = require('./user/schedule');
+const week = require('../user/schedule');
+const login = require('./login');
 const moment = require('moment');
-const mongo = require('./lib/mongo');
-const WorkoutModel = require('./models/workout');
-const RideModel = require('./models/ride');
-const classTypes = require('./meta/class-types.js');
-const instructorsHash = require('./meta/instructors-hash.js');
+const mongo = require('../lib/mongo');
+const WorkoutModel = require('../models/workout');
+const RideModel = require('../models/ride');
+const classTypes = require('../meta/class-types.js');
+const instructorsHash = require('../meta/instructors-hash.js');
 const fetch = require('node-fetch');
 const FormData = require('form-data');
 
@@ -12,6 +13,7 @@ const NOW_TO_PAST = -1;
 const PAST_TO_NOW = 1;
 const FROM_DATE = 1514768461;
 let tomorrow;
+let cookie;
 
 function compare( a, b ) {
   if ( a.weight < b.weight ){
@@ -154,6 +156,7 @@ const buildStack = async () => {
 
 const stackClasses = async () => {
 	await mongo.client();
+	cookie = await login();
 
 	const stack = await buildStack();
 	const graphqlresult = await saveStack(stack);
