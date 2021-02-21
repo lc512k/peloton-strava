@@ -11,6 +11,7 @@ const RideModel = require('../models/ride');
 
 const runHistoric = async () => {
 
+	await mongo.client();
 	const disciplines = [cycling, yoga, strength, bootcamp, stretching];
 
 	for (let j = 0; j < disciplines.length; j++) {
@@ -19,10 +20,16 @@ const runHistoric = async () => {
 
 		for (let i = 0; i < rides.length; i++) {
 			console.log('read: ', rides[i])
+			console.log(i)
+			try{
 			const result = await RideModel.findOneAndUpdate({_id:rides[i].id}, rides[i], {upsert: true, new: true});
 			console.log(result)
 			console.log('wrote:', rides[i].description, rides[i].title)
 			console.log('\n\n')
+			}
+			catch(e) {
+				console.log(e.toString())
+			}
 		}
 	}
 

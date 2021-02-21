@@ -21,7 +21,10 @@ const rideSchema = new mongoose.Schema({
 	image_url: String,
 	original_air_time: Number,
 	rating: Number,
-	ride_type_id: String
+	ride_type_id: String,
+	join_tokens: {
+		on_demand: String
+	}
 });
 
 module.exports = mongoose.model('Ride', rideSchema);
