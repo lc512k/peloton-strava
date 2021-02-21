@@ -166,4 +166,6 @@ const stackClasses = async () => {
 	return result;
 }
 
-module.exports = {stackClasses};
+(async function() {await stackClasses()})();
+
+// module.exports = {stackClasses};
