@@ -3,7 +3,7 @@ const mongo = require('./lib/mongo');
 const main = require('./main');
 
 const app = express();
-app.get('/', async (req, res) => res.json(await main.buildStack()));
+app.get('/', async (req, res) => res.json(await main.stackClasses()));
 
 mongo.client()
 	.then(() => {

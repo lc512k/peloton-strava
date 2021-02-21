@@ -1,5 +1,4 @@
 /////// CYCLING ///////
-
 exports.warmUpRide_5 = {
 	classType: ['Low Impact'],
 	titleSearchString: 'Warm Up',
@@ -19,7 +18,6 @@ exports.warmUpRide_5 = {
 		'Matt Wilpers'
 	]
 }
-
 exports.coolDownRide_5 = {
 	classType: ['Low Impact'],
 	titleSearchString: 'Cool Down',
@@ -40,143 +38,44 @@ exports.coolDownRide_5 = {
 		'Ally Love'
 	]
 }
-
-
-
-recoveryRide_20 = {
+exports.recoveryRide_20 = {
 	classType: ['Low Impact', 'Beginner'],
 	discipline: 'cycling',
-	duration: 300,
+	duration: 1200,
 	preferredInstructors: [
 		'Cody Rigsby',
+		'Tunde Oyeneyin',
+		'Robin Arzon',
 		'Matt Wilpers',
 		'Christine D\'Erecole',
 		'Sam Yo',
-		'Tunde Oyeneyin',
-		'Robin Arzon',
 		'Ally Love',
 		'Hannah Frankson'
 	]
 }
 
-const buildRide = (duration, classType, titleExcludeString) => {
+const buildRide = (duration, classType, titleSearchString, titleExcludeString, titlePreferredString) => {
 	const ride = {
 		classType,
+		titleSearchString,
 		discipline: 'cycling',
+		titlePreferredString,
 		titleExcludeString,
 		preferredInstructors: [
 			'Cody Rigsby',
 			'Robin Arzon'
 		]
 	};
+	// TODO no need, add to object
 	ride.duration = duration*60;
 	return ride;
 }
 
-exports.ride_20 = buildRide(20, ['Music', 'Theme', 'Groove'], 'Arms');
-exports.ride_30 = buildRide(30, ['Music', 'Theme', 'Groove', 'Intervals', 'Live DJ', 'Climb', 'Power Zone'], 'Endurance');
-exports.ride_45 = buildRide(45, ['Music', 'Theme', 'Groove', 'Live DJ'], 'Endurance');
+exports.ride_20 = buildRide(20, ['Music', 'Theme', 'Groove'], null, 'Arms');
+exports.ride_30 = buildRide(30, ['Music', 'Theme', 'Groove', 'Intervals', 'Live DJ', 'Climb', 'Power Zone'], null, 'Endurance');
+exports.ride_45 = buildRide(45, ['Music', 'Theme', 'Groove', 'Intervals', 'Live DJ'], null, 'Endurance', 'Arms');
 
 /////// STRETCH ///////
-
-exports.fullBodyStretch_10 = {
-	classType: ['Full Body Stretch'],
-	discipline: 'stretching',
-	duration: 600,
-	preferredInstructors: [
-		'Hannah Corbin',
-		'Denis Morton',
-		'Ben Aldis',
-		'Robin Arzon'
-	]
-}
-
-exports.upperBodyStretch_10 = {
-	classType: ['Upper Body Stretch'],
-	discipline: 'stretching',
-	titleExcludeString: 'Foam',
-	duration: 600,
-	preferredInstructors: [
-		'Hannah Corbin',
-		'Andy Speer',
-		'Denis Morton',
-		'Ben Aldis',
-		'Robin Arzon'
-	]
-}
-
-exports.lowerBodyStretch_10 = {
-	classType: ['Lower Body Stretch'],
-	discipline: 'stretching',
-	titleExcludeString: 'Foam',
-	duration: 600,
-	preferredInstructors: [
-		'Hannah Corbin',
-		'Andy Speer',
-		'Denis Morton',
-		'Ben Aldis',
-		'Robin Arzon'
-	]
-}
-
-const buildStretch = (duration, classType, titleSearchString) => {
-	const stretch = {
-		classType: ['Lower Body Stretch'],
-		discipline: 'stretching',
-		titleExcludeString: 'Foam',
-		duration: 600,
-		preferredInstructors: [
-			'Hannah Corbin',
-			'Andy Speer',
-			'Denis Morton',
-			'Ben Aldis',
-			'Robin Arzon'
-		]
-	};
-	stretch.duration = duration*60;
-	return stretch;
-}
-
-armsStretch_10 = {
-	classType: ['Upper Body Stretch'],
-	discipline: 'stretching',
-	titleSearchString: 'Arms',
-	duration: 600,
-	preferredInstructors: [
-		'Andy Speer',
-		'Hannah Corbin',
-		'Denis Morton',
-		'Ben Aldis',
-		'Robin Arzon'
-	]
-}
-
-chestStretch_10 = {
-	classType: ['Upper Body Stretch'],
-	discipline: 'stretching',
-	titleSearchString: 'Chest',
-	duration: 600,
-	preferredInstructors: [
-		'Andy Speer',
-		'Hannah Corbin',
-		'Denis Morton',
-		'Ben Aldis',
-		'Robin Arzon'
-	]
-}
-
-exports.fullBodyStretch_5 = {
-	classType: ['Full Body Stretch'],
-	discipline: 'stretching',
-	duration: 300,
-	preferredInstructors: [
-		'Hannah Corbin',
-		'Andy Speer',
-		'Denis Morton',
-		'Ben Aldis',
-		'Robin Arzon'
-	]
-}
 exports.postRideStretch_5 = {
 	classType: ['Pre & Post-Ride Stretch'],
 	titleSearchString: 'Post',
@@ -189,57 +88,51 @@ exports.postRideStretch_5 = {
 	]
 }
 
+const buildStretch = (duration, classType, titleSearchString) => {
+	const stretch = {
+		classType,
+		titleSearchString,
+		discipline: 'stretching',
+		titleExcludeString: 'Foam',
+		preferredInstructors: [
+			'Andy Speer',
+			'Hannah Corbin',
+			'Denis Morton',
+			'Ben Aldis',
+			'Robin Arzon'
+		]
+	};
+	stretch.duration = duration*60;
+	return stretch;
+}
+
+exports.armsStretch_10 = buildStretch(10, ['Upper Body Stretch'], 'Arms')
+exports.chestStretch_10 = buildStretch(10, ['Upper Body Stretch'], 'Chest')
+exports.fullBodyStretch_10 = buildStretch(10, ['Full Body Stretch'])
+exports.upperBodyStretch_10 = buildStretch(10, ['Upper Body Stretch'])
+exports.lowerBodyStretch_10 = buildStretch(10, ['Lower Body Stretch'])
+
 /////// YOGA ///////
-
-exports.focusFlowYoga_10 = {
-	classType: ['Focus Flow'],
-	discipline: 'yoga',
-	titleSearchString: 'Hips',
-	duration: 600,
-	preferredInstructors: [
-		'Aditi Shah',
-		'Anna Greenberg',
-		'Denis Morton'
-	]
+const buildYoga = (duration, classType, titleSearchString) => {
+	const yoga = {
+		classType,
+		titleSearchString,
+		discipline: 'yoga',
+		preferredInstructors: [
+			'Aditi Shah',
+			'Anna Greenberg',
+			'Denis Morton'
+		]
+	};
+	yoga.duration = duration*60;
+	return yoga;
 }
-
-exports.focusFlowYoga_20 = {
-	classType: ['Focus Flow'],
-	discipline: 'yoga',
-	titleSearchString: 'Hips',
-	duration: 1200,
-	preferredInstructors: [
-		'Aditi Shah',
-		'Anna Greenberg',
-		'Denis Morton'
-	]
-}
-
-exports.slowFlowYoga_20 = {
-	classType: ['Focus Flow'],
-	discipline: 'yoga',
-	duration: 1200,
-	preferredInstructors: [
-		'Aditi Shah',
-		'Anna Greenberg',
-		'Denis Morton',
-		'Ross Rayburn'
-	]
-}
-
-exports.restorativeYoga_30 = {
-	classType: ['Restorative'],
-	discipline: 'yoga',
-	duration: 1800,
-	preferredInstructors: [
-		'Aditi Shah',
-		'Anna Greenberg',
-		'Denis Morton'
-	]
-}
+exports.focusFlowYoga_10 = buildYoga(10, ['Focus Flow'], 'Hips')
+exports.focusFlowYoga_20 = buildYoga(20, ['Focus Flow'], 'Hips')
+exports.slowFlowYoga_20 = buildYoga(20, ['Slow Flow'])
+exports.restorativeYoga_30 = buildYoga(30, ['Restorative'])
 
 /////// STRENGTH ////////
-
 exports.core_10 = {
 	classType: ['Core'],		
 	discipline: 'strength',
@@ -252,50 +145,30 @@ exports.core_10 = {
 		'Emma Lovewell'
 	]
 }
-
-exports.lowerBodyStrength_30 = {
-	classType: ['Lower Body'],		
-	discipline: 'strength',
-	duration: 1800,
-	preferredInstructors: [
-		'Andy Speer',
-		'Chase Tucker',
-		'Robin Arzon',
-		'Adrian Williams'
-	]
+const buildStrength = (duration, classType, titleSearchString) => {
+	const strength = {
+		classType,
+		titleSearchString,
+		discipline: 'strength',
+		preferredInstructors: [
+			'Andy Speer',
+			'Chase Tucker',
+			'Robin Arzon',
+			'Adrian Williams'
+		]
+	};
+	strength.duration = duration*60;
+	return strength;
 }
 
-exports.armsStrength_30 = {
-	classType: ['Upper Body'],		
-	discipline: 'strength',
-	titleSearchString: 'Arms',
-	duration: 1800,
-	preferredInstructors: [
-		'Andy Speer',
-		'Chase Tucker',
-		'Robin Arzon',
-		'Adrian Williams'
-	]
-}
-
-exports.chestStrength_20 = {
-	classType: ['Upper Body'],			
-	discipline: 'strength',
-	titleSearchString: 'Chest',
-	duration: 1800,
-	preferredInstructors: [
-		'Andy Speer',
-		'Chase Tucker',
-		'Robin Arzon',
-		'Adrian Williams'
-	]
-}
+exports.lowerBodyStrength_30 = buildStrength(30, ['Lower Body']) 
+exports.armsStrength_30 = buildStrength(30, ['Upper Body'], 'Arms') 
+exports.chestStrength_20 = buildStrength(20, ['Upper Body'], 'Chest') 
 
 /////// BOOTCAMP //////// 
-
 exports.bootcamp_45 = {
-	classType: ['Bike Bootcamp'],			
-	discipline: 'cycling',
+	classType: ['Theme', 'Body Focus', 'Music', 'Bodyweight'],			
+	discipline: 'bike_bootcamp',
 	duration: 2700,
 	preferredInstructors: [
 		'Cody Rigsby',
