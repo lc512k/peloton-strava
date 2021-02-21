@@ -77,7 +77,6 @@ const buildStack = async () => {
 	let today = moment();
 	tomorrow = moment().add(1,'days').format('dddd');
 
-
 	const schedule = week[tomorrow];
 	console.log({tomorrow, schedule})
 

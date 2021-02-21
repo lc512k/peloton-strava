@@ -28,7 +28,7 @@ module.exports = {
 		combos.recoveryRide_20,
 		combos.postRideStretch_5,
 		combos.slowFlowYoga_20,
-		combos.fullBodyStretch_10
+		combos.lowerBodyStretch_10
 	], 
 	Friday: [
 		combos.core_10,
