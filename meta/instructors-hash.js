@@ -1,4 +1,8 @@
 const instructorsHash = {
+	'0ebae5c509634ab0b46e1249f75cf37f': {
+		"name": "Alex + Tunde",
+		"image_url": "https://s3.amazonaws.com/workout-metric-images-prod/e4f5bdd25e044749880a0715c847c061"
+	},
 	'00ac4af8b8024c3891883c81c212c105': {
 		"name": "Alex & Tunde  ",
 		"image_url": "https://s3.amazonaws.com/workout-metric-images-prod/e4f5bdd25e044749880a0715c847c061"
