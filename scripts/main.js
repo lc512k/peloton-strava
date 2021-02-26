@@ -175,8 +175,8 @@ const stackClasses = async () => {
 	cookie = await login();
 
 	const stack = await buildStack();
-	// const graphqlresult = await saveStack(stack);
-	result = {stack: stack.map(item => `${item.title} with ${instructorsHash[item.instructor_id].name}`)/*, graphqlresult*/}
+	const graphqlresult = await saveStack(stack);
+	result = {stack: stack.map(item => `${item.title} with ${instructorsHash[item.instructor_id].name}`), graphqlresult}
 
 	console.log(tomorrow)
 	console.log(result)
