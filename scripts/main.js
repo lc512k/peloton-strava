@@ -19,7 +19,7 @@ const WEIGHT = {
 	ROCK: -5,
 	HIIT: -5,
 	POP: 1,
-	INSTRUCTOR_MAX: 10,
+	INSTRUCTOR_MAX: 2,
 	EASE_MULTIPLIER: 0.5,
 	DONE_IT: -2,
 	HAS_EXCLUDED_STRING: -5,	
@@ -89,7 +89,7 @@ const buildStack = async () => {
 
 	let today = moment();
 	tomorrow = moment().add(1,'days').format('dddd');
-	tomorrow = 'Wednesday'
+	tomorrow = 'Sunday'
 
 	const schedule = week[tomorrow];
 	console.log({tomorrow, schedule})
@@ -100,6 +100,7 @@ const buildStack = async () => {
 		const result = await RideModel.find({
 			ride_type_id: {$in: getIds(classTemplate)},
 			duration: classTemplate.duration,
+			language: 'english',
 			title: { $regex: classTemplate.titleSearchString || '', $options: "i" },
 			original_air_time: {$gt: FROM_DATE}
 		})
@@ -110,7 +111,7 @@ const buildStack = async () => {
 
 		console.log({classType: classTemplate.classType, hits: result.length});
 
-		let counter = -1;
+		let counter = 5;
 
 		for (unweightedRide of result) {
 			let weight = 0;
@@ -126,13 +127,8 @@ const buildStack = async () => {
 				weights.hiit = WEIGHT.HIIT;
 			}
 			const name = instructorsHash[unweightedRide.instructor_id] ? instructorsHash[unweightedRide.instructor_id].name : 'NOT FOUND';
-			if (classTemplate.preferredInstructors.includes(name)){
-				const totalInstructors = classTemplate.preferredInstructors.length + 1;
-				const instructorPosition = classTemplate.preferredInstructors.indexOf(name) + 1;
-				const instructorWeight = totalInstructors - instructorPosition;
-				const instructorWeightNormalized = instructorWeight*WEIGHT.INSTRUCTOR_MAX/totalInstructors;
-
-				weights.instructor = instructorWeightNormalized;
+			if (Object.keys(classTemplate.preferredInstructors).includes(name)){
+				weights.instructor = classTemplate.preferredInstructors[name]/WEIGHT.INSTRUCTOR_MAX;
 			}
 			else {
 				weights.instructor = -WEIGHT.INSTRUCTOR_MAX
@@ -143,9 +139,14 @@ const buildStack = async () => {
 
 			const workout = await WorkoutModel.find({ride_id:unweightedRide._id});
 			const doneIt = workout.length > 0;
-			
+
 			if (doneIt) {
 				weights.doneIt = WEIGHT.DONE_IT;
+				console.log('DONE IT', classTemplate)
+				if (classTemplate.repeatsOk) {
+					weights.doneIt *= -1;
+				}
+				console.log({weights})
 			}
 			if (unweightedRide.title.includes(classTemplate.titleExcludeString)) {
 				weights.exludedString = WEIGHT.HAS_EXCLUDED_STRING;
@@ -157,11 +158,11 @@ const buildStack = async () => {
 				weight += weights[label];
 			}
 			unweightedRide.weight = weight;
-			counter = counter/1.5;
+			counter = counter/1.1;
 		}
 
 		result.sort(compare);
-		console.log(result.map(({weights, weight, title, instructor_id}) => ({weights, weight, title, instructor: instructorsHash[instructor_id]?instructorsHash[instructor_id].name:'NONAME'})).slice(0,25))
+		console.log(result.map(({weights, weight, title, instructor_id}) => ({weights, weight, title, instructor: instructorsHash[instructor_id]?instructorsHash[instructor_id].name:'NONAME'})).slice(0,5))
 		response.push(result[0]);
 		console.log('\n')
 	

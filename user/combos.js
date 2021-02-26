@@ -11,12 +11,12 @@ const buildRide = (duration, preferredInstructors, classType, titleSearchString,
 	};
 	return ride;
 }
-exports.warmUpRide_5 = buildRide(5, [{'Cody Rigsby', 10}, {'Tunde Oyeneyin', 10}, {'Robin Arzon', 10}, {'Sam Yo', 10}], ['Low Impact'], null, 'Warm Up');
-exports.coolDownRide_5 = buildRide(5, [{'Cody Rigsby', 10}, {'Tunde Oyeneyin', 10}, {'Robin Arzon', 10}, {'Sam Yo', 10}], ['Low Impact'], null, 'Cool Down');
-exports.recoveryRide_20 = buildRide(20, [{'Cody Rigsby', 10}, {'Tunde Oyeneyin', 8}, {'Christine D\'Erecole', 6}, {'Sam Yo', 5}], ['Low Impact', 'Beginner']);
-exports.ride_20 = buildRide(20, [{'Cody Rigsby', 10}, {'Robin Arzon', 8}, {'Robin Arzon', 5}], ['Music', 'Theme', 'Groove'], null, 'Arms');
-exports.ride_30 = buildRide(30, [{'Cody Rigsby', 10}, {'Robin Arzon', 10}], ['Music', 'Theme', 'Groove', 'Intervals', 'Live DJ', 'Climb', 'Power Zone'], null, 'Endurance');
-exports.ride_45 = buildRide(45, [{'Cody Rigsby', 10}, {'Robin Arzon', 10}], ['Music', 'Theme', 'Groove', 'Intervals', 'Live DJ'], null, 'Endurance', 'Arms');
+exports.warmUpRide_5 = buildRide(5, {'Cody Rigsby': 10, 'Tunde Oyeneyin': 10, 'Robin Arzon': 10, 'Sam Yo': 10}, ['Low Impact'], null, null, 'Warm Up');
+exports.coolDownRide_5 = buildRide(5, {'Cody Rigsby': 10, 'Tunde Oyeneyin': 10, 'Robin Arzon': 10, 'Sam Yo': 10}, ['Low Impact'], null, null, 'Cool Down');
+exports.recoveryRide_20 = buildRide(20, {'Cody Rigsby': 10, 'Tunde Oyeneyin': 8, 'Christine D\'Erecole': 6, 'Sam Yo': 5}, ['Low Impact', 'Beginner']);
+exports.ride_20 = buildRide(20, {'Cody Rigsby': 10, 'Robin Arzon': 8, 'Robin Arzon': 5}, ['Music', 'Theme', 'Groove'], null, 'Arms');
+exports.ride_30 = buildRide(30, {'Cody Rigsby': 10, 'Robin Arzon': 10}, ['Music', 'Theme', 'Groove', 'Intervals', 'Live DJ', 'Climb', 'Power Zone'], null, 'Endurance');
+exports.ride_45 = buildRide(45, {'Cody Rigsby': 10, 'Robin Arzon': 10}, ['Music', 'Theme', 'Groove', 'Intervals', 'Live DJ'], null, 'Endurance', 'Arms');
 
 /////// STRETCH ///////
 exports.postRideStretch_5 = {
@@ -24,10 +24,9 @@ exports.postRideStretch_5 = {
 	titleSearchString: 'Post',
 	discipline: 'stretching',
 	duration: 300,
+	repeatsOk: true,
 	preferredInstructors: [
-		{'Cody Rigsby', 10},
-		{'Tunde Oyeneyin', 10},
-		{'Robin Arzon', 10}
+		{'Cody Rigsby': 10, 'Tunde Oyeneyin': 10, 'Robin Arzon': 10}
 	]
 }
 
@@ -38,13 +37,13 @@ const buildStretch = (duration, classType, titleSearchString) => {
 		duration: duration*60,
 		discipline: 'stretching',
 		titleExcludeString: 'Foam',
-		preferredInstructors: [
-			{'Andy Speer', 10},
-			{'Hannah Corbin', 9},
-			{'Denis Morton', 9},
-			{'Robin Arzon', 8},
-			{'Ben Aldis', 7}
-		]
+		preferredInstructors: {
+			'Andy Speer': 10,
+			'Hannah Corbin': 9,
+			'Denis Morton': 9,
+			'Robin Arzon': 8,
+			'Ben Aldis': 7
+		}
 	};
 	return stretch;
 }
@@ -63,11 +62,8 @@ const buildYoga = (duration, classType,  titleSearchString, titleExcludeString, 
 		duration: duration*60,
 		titlePreferredString,
 		discipline: 'yoga',
-		preferredInstructors: [
-			{'Aditi Shah', 10},
-			{'Anna Greenberg', 10},
-			{'Denis Morton', 10}
-		]
+		preferredInstructors: {'Aditi Shah': 10, 'Anna Greenberg': 10, 'Denis Morton': 10}
+		
 	};
 	return yoga;
 }
@@ -81,13 +77,8 @@ exports.core_10 = {
 	classType: ['Core'],		
 	discipline: 'strength',
 	duration: 600,
-	preferredInstructors: [
-		{'Andy Speer', 10},
-		{'Chase Tucker', 10},
-		{'Robin Arzon', 10},
-		{'Olivia Amato', 10},
-		{'Emma Lovewell', 10}
-	]
+	preferredInstructors: {'Andy Speer': 10, 'Chase Tucker': 8, 'Robin Arzon': 6, 'Emma Lovewell': 4}
+	
 }
 const buildStrength = (duration, classType, titleSearchString) => {
 	const strength = {
@@ -95,12 +86,7 @@ const buildStrength = (duration, classType, titleSearchString) => {
 		duration: duration*60,
 		titleSearchString,
 		discipline: 'strength',
-		preferredInstructors: [
-			{'Andy Speer', 10},
-			{'Chase Tucker', 10},
-			{'Robin Arzon', 10},
-			{'Adrian Williams', 10}
-		]
+		preferredInstructors: {'Andy Speer': 10, 'Chase Tucker': 10, 'Robin Arzon': 10, 'Adrian Williams': 10}
 	};
 	return strength;
 }
@@ -114,12 +100,7 @@ exports.bootcamp_45 = {
 	classType: ['Theme', 'Body Focus', 'Music', 'Bodyweight'],			
 	discipline: 'bike_bootcamp',
 	duration: 2700,
-	preferredInstructors: [
-		{'Cody Rigsby', 10},
-		{'Jess Sims', 10},
-		{'Robin Arzon', 10},
-		{'Tunde Oyeneyin', 10}
-	]
+	preferredInstructors: {'Cody Rigsby': 10, 'Jess Sims': 10, 'Robin Arzon': 10, 'Tunde Oyeneyin': 10}
 }
 
 
