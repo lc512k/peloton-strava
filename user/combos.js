@@ -1,79 +1,22 @@
 /////// CYCLING ///////
-exports.warmUpRide_5 = {
-	classType: ['Low Impact'],
-	titleSearchString: 'Warm Up',
-	discipline: 'cycling',
-	duration: 300,
-	preferredInstructors: [
-		'Cody Rigsby',
-		'Tunde Oyeneyin',
-		'Robin Arzon',
-		'Sam Yo',
-		'Ben Aldis',
-		'Leanne Hainsby',
-		'Hannah Frankson',
-		'Christine D\'Erecole',
-		'Alex Toussaint',
-		'Ally Love',
-		'Matt Wilpers'
-	]
-}
-exports.coolDownRide_5 = {
-	classType: ['Low Impact'],
-	titleSearchString: 'Cool Down',
-	discipline: 'cycling',
-	duration: 300,
-	preferredInstructors: [
-		'Cody Rigsby',
-		'Christine D\'Erecole',
-		'Sam Yo',
-		'Matt Wilpers',
-		'Cody Rigsby',
-		'Tunde Oyeneyin',
-		'Robin Arzon',
-		'Ben Aldis',
-		'Leanne Hainsby',
-		'Hannah Frankson',
-		'Alex Toussaint',
-		'Ally Love'
-	]
-}
-exports.recoveryRide_20 = {
-	classType: ['Low Impact', 'Beginner'],
-	discipline: 'cycling',
-	duration: 1200,
-	preferredInstructors: [
-		'Cody Rigsby',
-		'Tunde Oyeneyin',
-		'Robin Arzon',
-		'Matt Wilpers',
-		'Christine D\'Erecole',
-		'Sam Yo',
-		'Ally Love',
-		'Hannah Frankson'
-	]
-}
-
-const buildRide = (duration, classType, titleSearchString, titleExcludeString, titlePreferredString) => {
+const buildRide = (duration, preferredInstructors, classType, titleSearchString, titleExcludeString, titlePreferredString) => {
 	const ride = {
 		classType,
+		duration: duration*60,
 		titleSearchString,
 		discipline: 'cycling',
 		titlePreferredString,
 		titleExcludeString,
-		preferredInstructors: [
-			'Cody Rigsby',
-			'Robin Arzon'
-		]
+		preferredInstructors
 	};
-	// TODO no need, add to object
-	ride.duration = duration*60;
 	return ride;
 }
-
-exports.ride_20 = buildRide(20, ['Music', 'Theme', 'Groove'], null, 'Arms');
-exports.ride_30 = buildRide(30, ['Music', 'Theme', 'Groove', 'Intervals', 'Live DJ', 'Climb', 'Power Zone'], null, 'Endurance');
-exports.ride_45 = buildRide(45, ['Music', 'Theme', 'Groove', 'Intervals', 'Live DJ'], null, 'Endurance', 'Arms');
+exports.warmUpRide_5 = buildRide(5, [{'Cody Rigsby', 10}, {'Tunde Oyeneyin', 10}, {'Robin Arzon', 10}, {'Sam Yo', 10}], ['Low Impact'], null, 'Warm Up');
+exports.coolDownRide_5 = buildRide(5, [{'Cody Rigsby', 10}, {'Tunde Oyeneyin', 10}, {'Robin Arzon', 10}, {'Sam Yo', 10}], ['Low Impact'], null, 'Cool Down');
+exports.recoveryRide_20 = buildRide(20, [{'Cody Rigsby', 10}, {'Tunde Oyeneyin', 8}, {'Christine D\'Erecole', 6}, {'Sam Yo', 5}], ['Low Impact', 'Beginner']);
+exports.ride_20 = buildRide(20, [{'Cody Rigsby', 10}, {'Robin Arzon', 8}, {'Robin Arzon', 5}], ['Music', 'Theme', 'Groove'], null, 'Arms');
+exports.ride_30 = buildRide(30, [{'Cody Rigsby', 10}, {'Robin Arzon', 10}], ['Music', 'Theme', 'Groove', 'Intervals', 'Live DJ', 'Climb', 'Power Zone'], null, 'Endurance');
+exports.ride_45 = buildRide(45, [{'Cody Rigsby', 10}, {'Robin Arzon', 10}], ['Music', 'Theme', 'Groove', 'Intervals', 'Live DJ'], null, 'Endurance', 'Arms');
 
 /////// STRETCH ///////
 exports.postRideStretch_5 = {
@@ -82,9 +25,9 @@ exports.postRideStretch_5 = {
 	discipline: 'stretching',
 	duration: 300,
 	preferredInstructors: [
-		'Cody Rigsby',
-		'Tunde Oyeneyin',
-		'Robin Arzon'
+		{'Cody Rigsby', 10},
+		{'Tunde Oyeneyin', 10},
+		{'Robin Arzon', 10}
 	]
 }
 
@@ -92,17 +35,17 @@ const buildStretch = (duration, classType, titleSearchString) => {
 	const stretch = {
 		classType,
 		titleSearchString,
+		duration: duration*60,
 		discipline: 'stretching',
 		titleExcludeString: 'Foam',
 		preferredInstructors: [
-			'Andy Speer',
-			'Hannah Corbin',
-			'Denis Morton',
-			'Ben Aldis',
-			'Robin Arzon'
+			{'Andy Speer', 10},
+			{'Hannah Corbin', 9},
+			{'Denis Morton', 9},
+			{'Robin Arzon', 8},
+			{'Ben Aldis', 7}
 		]
 	};
-	stretch.duration = duration*60;
 	return stretch;
 }
 
@@ -113,22 +56,23 @@ exports.upperBodyStretch_10 = buildStretch(10, ['Upper Body Stretch'])
 exports.lowerBodyStretch_10 = buildStretch(10, ['Lower Body Stretch'])
 
 /////// YOGA ///////
-const buildYoga = (duration, classType, titleSearchString) => {
+const buildYoga = (duration, classType,  titleSearchString, titleExcludeString, titlePreferredString) => {
 	const yoga = {
 		classType,
 		titleSearchString,
+		duration: duration*60,
+		titlePreferredString,
 		discipline: 'yoga',
 		preferredInstructors: [
-			'Aditi Shah',
-			'Anna Greenberg',
-			'Denis Morton'
+			{'Aditi Shah', 10},
+			{'Anna Greenberg', 10},
+			{'Denis Morton', 10}
 		]
 	};
-	yoga.duration = duration*60;
 	return yoga;
 }
-exports.focusFlowYoga_10 = buildYoga(10, ['Focus Flow'], 'Hips')
-exports.focusFlowYoga_20 = buildYoga(20, ['Focus Flow'], 'Hips')
+exports.focusFlowYoga_10 = buildYoga(10, ['Focus Flow'], 'Hips', null, 'Focus')
+exports.focusFlowYoga_20 = buildYoga(20, ['Focus Flow'], 'Hips', null, 'Focus')
 exports.slowFlowYoga_20 = buildYoga(20, ['Slow Flow'])
 exports.restorativeYoga_30 = buildYoga(30, ['Restorative'])
 
@@ -138,26 +82,26 @@ exports.core_10 = {
 	discipline: 'strength',
 	duration: 600,
 	preferredInstructors: [
-		'Andy Speer',
-		'Chase Tucker',
-		'Robin Arzon',
-		'Olivia Amato',
-		'Emma Lovewell'
+		{'Andy Speer', 10},
+		{'Chase Tucker', 10},
+		{'Robin Arzon', 10},
+		{'Olivia Amato', 10},
+		{'Emma Lovewell', 10}
 	]
 }
 const buildStrength = (duration, classType, titleSearchString) => {
 	const strength = {
 		classType,
+		duration: duration*60,
 		titleSearchString,
 		discipline: 'strength',
 		preferredInstructors: [
-			'Andy Speer',
-			'Chase Tucker',
-			'Robin Arzon',
-			'Adrian Williams'
+			{'Andy Speer', 10},
+			{'Chase Tucker', 10},
+			{'Robin Arzon', 10},
+			{'Adrian Williams', 10}
 		]
 	};
-	strength.duration = duration*60;
 	return strength;
 }
 
@@ -171,10 +115,10 @@ exports.bootcamp_45 = {
 	discipline: 'bike_bootcamp',
 	duration: 2700,
 	preferredInstructors: [
-		'Cody Rigsby',
-		'Jess Sims',
-		'Robin Arzon',
-		'Tunde Oyeneyin'
+		{'Cody Rigsby', 10},
+		{'Jess Sims', 10},
+		{'Robin Arzon', 10},
+		{'Tunde Oyeneyin', 10}
 	]
 }
 
