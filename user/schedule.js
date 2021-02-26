@@ -41,22 +41,21 @@ module.exports = {
 	Saturday: [
 		combos.core_10,
 		combos.fullBodyStretch_10,
-		combos.recoveryRide_20,
-		combos.postRideStretch_5,
-		combos.armsStrength_30,
-		combos.armsStretch_10,
-		combos.chestStrength_20,
-		combos.chestStretch_10
-	],
-	Sunday: [
-		combos.core_10,
-		combos.fullBodyStretch_10,
 		combos.warmUpRide_5,
 		combos.ride_20,
 		combos.coolDownRide_5,
 		combos.postRideStretch_5,
 		combos.focusFlowYoga_20,
 		combos.lowerBodyStrength_30
-
+	],
+	Sunday: [
+		combos.core_10,
+		combos.fullBodyStretch_10,
+		combos.recoveryRide_20,
+		combos.postRideStretch_5,
+		combos.armsStrength_30,
+		combos.armsStretch_10,
+		combos.chestStrength_20,
+		combos.chestStretch_10
 	]
 }
