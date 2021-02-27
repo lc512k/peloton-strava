@@ -13,7 +13,7 @@ const buildRide = (duration, preferredInstructors, classType, titleSearchString,
 }
 exports.warmUpRide_5 = buildRide(5, {'Cody Rigsby': 10, 'Tunde Oyeneyin': 10, 'Robin Arzon': 10, 'Sam Yo': 10}, ['Low Impact'], null, null, 'Warm Up');
 exports.coolDownRide_5 = buildRide(5, {'Cody Rigsby': 10, 'Tunde Oyeneyin': 10, 'Robin Arzon': 10, 'Sam Yo': 10}, ['Low Impact'], null, null, 'Cool Down');
-exports.recoveryRide_20 = buildRide(20, {'Cody Rigsby': 10, 'Tunde Oyeneyin': 8, 'Christine D\'Erecole': 6, 'Sam Yo': 5}, ['Low Impact', 'Beginner']);
+exports.recoveryRide_20 = buildRide(20, {'Cody Rigsby': 10, 'Tunde Oyeneyin': 8, 'Christine D\'Erecole': 6, 'Sam Yo': 5}, ['Low Impact', 'Beginner', 'Recovery']);
 exports.ride_20 = buildRide(20, {'Cody Rigsby': 10, 'Robin Arzon': 8, 'Robin Arzon': 5}, ['Music', 'Theme', 'Groove'], null, 'Arms');
 exports.ride_30 = buildRide(30, {'Cody Rigsby': 10, 'Robin Arzon': 10}, ['Music', 'Theme', 'Groove', 'Intervals', 'Live DJ', 'Climb', 'Power Zone'], null, 'Endurance');
 exports.ride_45 = buildRide(45, {'Cody Rigsby': 10, 'Robin Arzon': 10}, ['Music', 'Theme', 'Groove', 'Intervals', 'Live DJ'], null, 'Endurance', 'Arms');
