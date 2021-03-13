@@ -17,7 +17,7 @@ const run = async () => {
 	};
 	const response = await fetch(process.env.ARCHIVE_URL, requestOptions);
 	const result = await response.json();
-	console.log('loaded', result.data.length);
+	console.log('loaded', result.data);
 	const rides = result.data;
 
 	for (let i = 0; i < rides.length; i++) {

@@ -16,14 +16,14 @@ let tomorrow;
 let cookie;
 
 const WEIGHT = {
-	ROCK: -5,
-	HIIT: -5,
-	POP: 1,
-	INSTRUCTOR_MAX: 2,
-	EASE_MULTIPLIER: 0.5,
-	DONE_IT: -2,
-	HAS_EXCLUDED_STRING: -5,	
-	HAS_PREFERRED_STRING: 5,
+	ROCK: process.env.ROCK || -5,
+	HIIT: process.env.HIIT || -5,
+	POP: process.env.POP || 1,
+	INSTRUCTOR_MAX: process.env.INSTRUCTOR_MAX ||  2,
+	EASE_MULTIPLIER: process.env.EASE_MULTIPLIER || 0.5,
+	DONE_IT: process.env.DONE_IT || -2,
+	HAS_EXCLUDED_STRING: process.env.HAS_EXCLUDED_STRING || -5,	
+	HAS_PREFERRED_STRING: process.env.HAS_PREFERRED_STRING || 5,
 }
 
 function compare( a, b ) {
@@ -84,11 +84,12 @@ const saveStack = async (stack) => {
 	return graphqlResult
 }
 
-const buildStack = async () => {
+const buildStack = async (queryDay, sendToBike) => {
+	console.log({queryDay})
 	await mongo.client();
 
 	let today = moment();
-	tomorrow = moment().add(1,'days').format('dddd');
+	tomorrow = queryDay || process.env.TESTDAY || moment().add(1,'days').format('dddd');
 
 	const schedule = week[tomorrow];
 	console.log({tomorrow, schedule})
@@ -96,7 +97,7 @@ const buildStack = async () => {
 	const response = [];
 
 	for (let classTemplate of schedule) {
-		const result = await RideModel.find({
+		let result = await RideModel.find({
 			ride_type_id: {$in: getIds(classTemplate)},
 			duration: classTemplate.duration,
 			language: 'english',
@@ -142,7 +143,7 @@ const buildStack = async () => {
 			if (doneIt) {
 				weights.doneIt = WEIGHT.DONE_IT;
 				console.log('DONE IT', classTemplate)
-				if (classTemplate.repeatsOk) {
+				if (classTemplate.preferences.repeatsOK) {
 					weights.doneIt *= -1;
 				}
 				console.log({weights})
@@ -162,28 +163,41 @@ const buildStack = async () => {
 
 		result.sort(compare);
 		console.log(result.map(({weights, weight, title, instructor_id}) => ({weights, weight, title, instructor: instructorsHash[instructor_id]?instructorsHash[instructor_id].name:'NONAME'})).slice(0,5))
-		response.push(result[0]);
+		let selected = result[0];
+
+		if (classTemplate.preferences.random) {
+			console.log('RANDOM OK for ', classTemplate.classType)
+			const randomPos = Math.floor(Math.random() * 5) + 1 ;
+			console.log({randomPos})
+			selected = result[randomPos]
+		}
+
+		response.push(selected);
 		console.log('\n')
 	
 	}
 	return response;
 }
 
-const stackClasses = async () => {
+const stackClasses = async (query) => {
 	await mongo.client();
 	cookie = await login();
 
-	const stack = await buildStack();
-	const graphqlresult = await saveStack(stack);
-	result = {stack: stack.map(item => `${item.title} with ${instructorsHash[item.instructor_id].name}`), graphqlresult}
+	const stack = await buildStack(query.day);
+	let graphqlresult;
+
+	if (process.env.SEND_TO_BIKE || query.sendToBike) {
+		graphqlresult = await saveStack(stack);
+	}
+	result = {stack, graphqlresult}
 
 	console.log(tomorrow)
-	console.log(result)
+	console.log({result})
 
 	mongo.mongoose.connection.close();
 	return result;
 }
 
-(async function() {await stackClasses()})();
-
-// module.exports = {stackClasses};
+// (async function() {await stackClasses()})();
+ 
+module.exports = {stackClasses};
