@@ -197,7 +197,5 @@ const stackClasses = async (query) => {
 	mongo.mongoose.connection.close();
 	return result;
 }
-
-// (async function() {await stackClasses()})();
  
 module.exports = {stackClasses};

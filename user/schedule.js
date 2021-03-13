@@ -6,12 +6,12 @@ module.exports = {
 		combos.restorativeYoga_20
 	],
 	Tuesday: [
-		// combos.fullBodyStretch_10,
-		// combos.core_10,
+		combos.fullBodyStretch_10,
+		combos.core_10,
 		combos.warmUpRide_5,
-		// combos.ride_30,
-		// combos.coolDownRide_5,
-		// combos.postRideStretch_5
+		combos.ride_30,
+		combos.coolDownRide_5,
+		combos.postRideStretch_5
 	],
 	Wednesday: [
 		combos.fullBodyStretch_10,
