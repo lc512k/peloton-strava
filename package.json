@@ -6,8 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "load": "export $(cat .env | xargs) && node scripts/save-archive.js",
-    "dev": "export $(cat .env | xargs) && node scripts/main.js",
-    "start": "echo \"start\""
+    "dev": "export $(cat .env | xargs) && node -e \"require('./scripts/main.js').stackClasses()\"",
+    "start": "export $(cat .env | xargs) && node app.js"
   },
   "repository": {
     "type": "git",
@@ -22,6 +22,7 @@
   "dependencies": {
     "eslint": "^7.20.0",
     "express": "^4.17.1",
+    "express-handlebars": "^5.2.1",
     "form-data": "^4.0.0",
     "moment": "^2.29.1",
     "mongoose": "^5.11.17",

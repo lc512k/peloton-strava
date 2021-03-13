@@ -88,7 +88,7 @@ const buildStack = async () => {
 	await mongo.client();
 
 	let today = moment();
-	tomorrow = moment().add(1,'days').format('dddd');
+	tomorrow = process.env.TESTDAY || moment().add(1,'days').format('dddd');
 
 	const schedule = week[tomorrow];
 	console.log({tomorrow, schedule})
@@ -142,7 +142,7 @@ const buildStack = async () => {
 			if (doneIt) {
 				weights.doneIt = WEIGHT.DONE_IT;
 				console.log('DONE IT', classTemplate)
-				if (classTemplate.repeatsOk) {
+				if (classTemplate.preferences.repeatsOK) {
 					weights.doneIt *= -1;
 				}
 				console.log({weights})
@@ -156,7 +156,7 @@ const buildStack = async () => {
 			for (const label in weights) {
 				weight += weights[label];
 			}
-			unweightedRide.weight = weight;
+			unweightedRide.weight = classTemplate.preferences.random ? weight + 1*Math.random() : weight;
 			counter = counter/1.1;
 		}
 
@@ -174,7 +174,11 @@ const stackClasses = async () => {
 	cookie = await login();
 
 	const stack = await buildStack();
-	const graphqlresult = await saveStack(stack);
+	let graphqlresult;
+
+	if (!process.env.DRY_RUN) {
+		graphqlresult = await saveStack(stack);
+	}
 	result = {stack: stack.map(item => `${item.title} with ${instructorsHash[item.instructor_id].name}`), graphqlresult}
 
 	console.log(tomorrow)
@@ -184,6 +188,6 @@ const stackClasses = async () => {
 	return result;
 }
 
-(async function() {await stackClasses()})();
-
-// module.exports = {stackClasses};
+// (async function() {await stackClasses()})();
+ 
+module.exports = {stackClasses};
