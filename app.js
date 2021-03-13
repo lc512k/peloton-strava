@@ -19,9 +19,9 @@ app.use((req, res, next) => {
 	}
 })
 app.get('/json', async (req, res) => res.json(await main.stackClasses()));
-app.get('/preview', async (req, res) => {
-	const stack = await main.stackClasses();
-	res.render('preview', stack);
+app.get('/preview', async (req, res) => { 
+	const result = await main.stackClasses(req.query);
+	res.render('preview', result);
 });
 
 
