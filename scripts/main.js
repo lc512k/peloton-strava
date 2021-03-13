@@ -183,7 +183,7 @@ const stackClasses = async (query) => {
 	await mongo.client();
 	cookie = await login();
 
-	const stack = await buildStack(query ? query.day || undefined);
+	const stack = await buildStack(query ? query.day : undefined);
 	let graphqlresult;
 
 	if (process.env.SEND_TO_BIKE || query.sendToBike) {
