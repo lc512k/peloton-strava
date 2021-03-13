@@ -6,8 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "load": "export $(cat .env | xargs) && node scripts/save-archive.js",
-    "dev": "export $(cat .env | xargs) && node -e \"require('./scripts/main.js').stackClasses()\"",
-    "start": "export $(cat .env | xargs) && node app.js"
+    "main": "node -e \"require('./scripts/main.js').stackClasses()\"",
+    "dev": "export $(cat .env | xargs) && node app.js",
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
