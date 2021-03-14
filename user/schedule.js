@@ -13,7 +13,7 @@ module.exports = {
 		combos.ride_30,
 		combos.coolDownRide_5,
 		combos.postRideStretch_5,
-		combos.walk_20
+		combos.focusFlowYoga_10
 	],
 	Wednesday: [
 		combos.fullBodyStretch_10,
@@ -24,7 +24,7 @@ module.exports = {
 	],
 	Thursday: [
 		combos.slowFlowYoga_45,
-		combos.walk_20
+		combos.focusFlowYoga_10
 	], 
 	Friday: [
 		combos.fullBodyStretch_10,
