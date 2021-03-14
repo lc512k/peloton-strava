@@ -36,7 +36,7 @@ const run = async () => {
 
 		const result = await WorkoutModel.updateOne({_id:workouts[i].id}, miniWorkout, {upsert: true, setDefaultsOnInsert: true});
 		console.log(result)
-		console.log('wrote:', workouts[i].name, instructorsHash[workouts[i].peloton.ride.instructor_id].name)
+		console.log('wrote:', workouts[i].name, instructorsHash[workouts[i].peloton.ride.instructor_id] ? instructorsHash[workouts[i].peloton.ride.instructor_id].name : workouts[i].peloton.ride.instructor_id)
 
 		
 		console.log('\n\n')
