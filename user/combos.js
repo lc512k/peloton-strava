@@ -42,6 +42,8 @@ exports.chestStrength_20 = build('strength', 20, {'Andy Speer': 9, 'Chase Tucker
 /////// BOOTCAMP //////// 
 exports.bootcamp_45 = build('bike_bootcamp', 45, {'Cody Rigsby': 10, 'Jess Sims': 4, 'Robin Arzon': 8, 'Tunde Oyeneyin': 5}, ['Theme', 'Body Focus', 'Music', 'Bodyweight']) 
 exports.bootcamp_30 = build('bike_bootcamp', 45, {'Cody Rigsby': 10, 'Jess Sims': 4, 'Robin Arzon': 8, 'Tunde Oyeneyin': 5}, ['Theme', 'Body Focus', 'Music', 'Bodyweight']) 
+/////// WALKING //////// 
+exports.walk_20 = build('walking', 20, {'Jess Sims': 10, 'Robin Arzon': 10}, ['Walking'], null, 'Run', 'Fun') 
 
 
 

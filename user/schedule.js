@@ -3,7 +3,8 @@ module.exports = {
 	Monday: [
 		combos.fullBodyStretch_10,
 		combos.focusFlowYoga_10,
-		combos.restorativeYoga_20
+		combos.restorativeYoga_20,
+		combos.walk_20
 	],
 	Tuesday: [
 		combos.fullBodyStretch_10,
@@ -11,22 +12,26 @@ module.exports = {
 		combos.warmUpRide_5,
 		combos.ride_30,
 		combos.coolDownRide_5,
-		combos.postRideStretch_5
+		combos.postRideStretch_5,
+		combos.walk_20
 	],
 	Wednesday: [
 		combos.fullBodyStretch_10,
 		combos.ride_45,
 		combos.coolDownRide_5,
-		combos.postRideStretch_5
+		combos.postRideStretch_5,
+		combos.walk_20
 	],
 	Thursday: [
-		combos.slowFlowYoga_45
+		combos.slowFlowYoga_45,
+		combos.walk_20
 	], 
 	Friday: [
 		combos.fullBodyStretch_10,
 		combos.ride_45,
 		combos.coolDownRide_5,
-		combos.postRideStretch_5
+		combos.postRideStretch_5,
+		combos.walk_20
 	],
 	Saturday: [
 		combos.fullBodyStretch_10,
@@ -38,7 +43,7 @@ module.exports = {
 	Sunday: [
 		combos.fullBodyStretch_10,
 		combos.core_10,
-		combos.armsStrength_30,
+		combos.armsStrength_20,
 		combos.armsStretch_10,
 		combos.chestStrength_20,
 		combos.chestStretch_10
