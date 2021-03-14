@@ -187,6 +187,7 @@ const stackClasses = async (query) => {
 	let graphqlresult;
 
 	if (process.env.SEND_TO_BIKE || query.sendToBike) {
+		console.log('SEND_TO_BIKE', process.env.SEND_TO_BIKE, 'query', query)
 		graphqlresult = await saveStack(stack);
 	}
 	result = {stack, graphqlresult}
