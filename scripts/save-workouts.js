@@ -17,7 +17,7 @@ const run = async () => {
 		},
 		redirect: 'follow'
 	};
-	const url = `https://api.onepeloton.com/api/user/${process.env.USER_ID}/workouts?joins=peloton.ride&limit=20&page=0&sort_by=-created`;
+	const url = process.env.WORKOUTS_URL;
 	const response = await fetch(url, requestOptions);
 	const result = await response.json();
 	console.log('requesting', {url, requestOptions})
