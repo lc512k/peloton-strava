@@ -29,6 +29,7 @@ exports.lowerBodyStretch_10 = build('stretching', 10, {'Andy Speer': 10, 'Hannah
 exports.focusFlowYoga_10 = build('yoga', 10, {'Aditi Shah': 10, 'Anna Greenberg': 10, 'Denis Morton': 10}, ['Focus Flow'], 'Hips', null, 'Focus')
 exports.focusFlowYoga_20 = build('yoga', 20, {'Aditi Shah': 10, 'Anna Greenberg': 10, 'Denis Morton': 10}, ['Focus Flow'], 'Hips', null, 'Focus')
 exports.slowFlowYoga_20 = build('yoga', 20, {'Aditi Shah': 10, 'Anna Greenberg': 10, 'Denis Morton': 10}, ['Slow Flow'])
+exports.slowFlowYoga_45 = build('yoga', 45, {'Aditi Shah': 10, 'Anna Greenberg': 10, 'Denis Morton': 10}, ['Slow Flow'])
 exports.restorativeYoga_20 = build('yoga', 20, {'Aditi Shah': 10, 'Anna Greenberg': 10, 'Denis Morton': 10}, ['Restorative'])
 exports.restorativeYoga_30 = build('yoga', 30, {'Aditi Shah': 10, 'Anna Greenberg': 10, 'Denis Morton': 10}, ['Restorative'])
 /////// STRENGTH ////////
