@@ -121,7 +121,7 @@ const buildStack = async (queryDay, sendToBike) => {
 				weights.rock = WEIGHT.ROCK;
 			}
 			if (unweightedRide.title.toLowerCase().includes('pop')){
-				weights.pop = WEIGHT.ROCK;
+				weights.pop = WEIGHT.POP;
 			}
 			if (unweightedRide.title.toLowerCase().includes('HIIT')){
 				weights.hiit = WEIGHT.HIIT;
