@@ -41,6 +41,7 @@ exports.uperBodyStrength_30 = build('strength', 30, {'Andy Speer': 9, 'Chase Tuc
 exports.lowerBodyStrength_20 = build('strength', 20, {'Andy Speer': 9, 'Chase Tucker': 10, 'Robin Arzon': 10, 'Adrian Williams': 10}, ['Lower Body']) 
 exports.uperBodyStrength_20 = build('strength', 20, {'Andy Speer': 9, 'Chase Tucker': 10, 'Robin Arzon': 10, 'Adrian Williams': 10}, ['Upper Body']) 
 exports.armsStrength_30 = build('strength', 30, {'Andy Speer': 9, 'Chase Tucker': 10, 'Robin Arzon': 10, 'Adrian Williams': 10}, ['Upper Body'], 'Arms') 
+exports.armsStrength_20 = build('strength', 20, {'Andy Speer': 9, 'Chase Tucker': 10, 'Robin Arzon': 10, 'Adrian Williams': 10}, ['Upper Body'], 'Arms') 
 exports.chestStrength_20 = build('strength', 20, {'Andy Speer': 9, 'Chase Tucker': 10, 'Robin Arzon': 10, 'Adrian Williams': 10}, ['Upper Body'], 'Chest') 
 /////// BOOTCAMP //////// 
 exports.bootcamp_45 = build('bike_bootcamp', 45, {'Cody Rigsby': 10, 'Jess Sims': 4, 'Robin Arzon': 8, 'Tunde Oyeneyin': 5}, ['Theme', 'Body Focus', 'Music', 'Bodyweight']) 
