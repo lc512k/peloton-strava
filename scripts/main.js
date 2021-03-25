@@ -1,10 +1,11 @@
-const week = require('../user/schedule');
+// const week = require('../user/schedule');
 const login = require('./login');
 const moment = require('moment');
 const mongo = require('../lib/mongo');
 const WorkoutModel = require('../models/workout');
 const RideModel = require('../models/ride');
 const ScheduleModel = require('../models/schedule');
+const ComboModel = require('../models/combo');
 const classTypes = require('../meta/class-types.js');
 const instructorsHash = require('../meta/instructors-hash.js');
 const fetch = require('node-fetch');
@@ -90,13 +91,18 @@ const buildStack = async (queryDay, sendToBike) => {
 	let today = moment();
 	tomorrow = queryDay || process.env.TESTDAY || moment().add(1,'days').format('dddd');
 
-	const schedule = week[tomorrow];
+	const week = await ScheduleModel.find().lean().exec();
+	console.log("**** week", week[0])
+	console.log("**** week tomorrow", week[0][tomorrow])
 	console.log({tomorrow})
-	console.log(schedule)
+	const schedule = week[0][tomorrow];
+	console.log({schedule})
 
 	const response = [];
 
-	for (let classTemplate of schedule) {
+	for (let classTemplateId of schedule) {
+		const classTemplate = await ComboModel.findOne({_id: classTemplateId}).lean().exec();
+		console.log("**** classTemplate", classTemplate)
 		const include = classTemplate.includeStrings ? classTemplate.includeStrings.join('|') : '';
 		const exclude = classTemplate.excludeStrings || [];
 		console.log({exclude})
@@ -148,7 +154,7 @@ const buildStack = async (queryDay, sendToBike) => {
 			if (doneIt) {
 				weights.doneIt = WEIGHT.DONE_IT;
 				console.log('DONE IT', classTemplate)
-				if (classTemplate.preferences.repeatsOK) {
+				if (classTemplate.repeatsOK) {
 					weights.doneIt *= -1;
 				}
 				console.log({weights})
@@ -164,7 +170,7 @@ const buildStack = async (queryDay, sendToBike) => {
 		console.log(result.map(({weights, weight, title, instructor_id}) => ({weights, weight, title, instructor: instructorsHash[instructor_id]?instructorsHash[instructor_id].name:'NONAME'})).slice(0,5))
 		let selected = result[0];
 
-		if (classTemplate.preferences.random) {
+		if (classTemplate.random) {
 			console.log('RANDOM OK for ', classTemplate.classType)
 			const randomPos = Math.floor(Math.random() * 5) + 1 ;
 			console.log({randomPos})
