@@ -18,6 +18,11 @@ app.use((req, res, next) => {
 		res.status(401).send('You need an API key - Eg, ?apikey=123...');
 	}
 })
+app.get('/schedule', async(req, res) => {
+	const schedule = await main.getSchedule();
+	res.render('schedule', schedule)
+})
+app.get('/temp', async (req, res) => res.json(await main.tempWriteSchedule()));
 app.get('/json', async (req, res) => res.json(await main.stackClasses()));
 app.get('/preview', async (req, res) => { 
 	const result = await main.stackClasses(req.query);

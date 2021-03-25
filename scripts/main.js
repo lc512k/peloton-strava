@@ -4,6 +4,7 @@ const moment = require('moment');
 const mongo = require('../lib/mongo');
 const WorkoutModel = require('../models/workout');
 const RideModel = require('../models/ride');
+const ScheduleModel = require('../models/schedule');
 const classTypes = require('../meta/class-types.js');
 const instructorsHash = require('../meta/instructors-hash.js');
 const fetch = require('node-fetch');
@@ -21,9 +22,7 @@ const WEIGHT = {
 	POP: process.env.POP || 1,
 	INSTRUCTOR_MAX: process.env.INSTRUCTOR_MAX ||  2,
 	EASE_MULTIPLIER: process.env.EASE_MULTIPLIER || 0.5,
-	DONE_IT: process.env.DONE_IT || -2,
-	HAS_EXCLUDED_STRING: process.env.HAS_EXCLUDED_STRING || -5,	
-	HAS_PREFERRED_STRING: process.env.HAS_PREFERRED_STRING || 5,
+	DONE_IT: process.env.DONE_IT || -2
 }
 
 function compare( a, b ) {
@@ -92,16 +91,22 @@ const buildStack = async (queryDay, sendToBike) => {
 	tomorrow = queryDay || process.env.TESTDAY || moment().add(1,'days').format('dddd');
 
 	const schedule = week[tomorrow];
-	console.log({tomorrow, schedule})
+	console.log({tomorrow})
+	console.log(schedule)
 
 	const response = [];
 
 	for (let classTemplate of schedule) {
+		const include = classTemplate.includeStrings ? classTemplate.includeStrings.join('|') : '';
+		const exclude = classTemplate.excludeStrings || [];
+		console.log({exclude})
+		console.log({include})
+
 		let result = await RideModel.find({
 			ride_type_id: {$in: getIds(classTemplate)},
-			duration: classTemplate.duration,
+			duration: classTemplate.duration * 60,
 			language: 'english',
-			title: { $regex: classTemplate.titleSearchString || '', $options: "i" },
+			title: {$regex: include, $nin: exclude.map(item => new RegExp(item))},
 			original_air_time: {$gt: FROM_DATE}
 		})
 		.sort({original_air_time: NOW_TO_PAST})
@@ -148,12 +153,6 @@ const buildStack = async (queryDay, sendToBike) => {
 				}
 				console.log({weights})
 			}
-			if (unweightedRide.title.includes(classTemplate.titleExcludeString)) {
-				weights.exludedString = WEIGHT.HAS_EXCLUDED_STRING;
-			}
-			if (unweightedRide.title.includes(classTemplate.titlePreferredString)) {
-				weights.preferredString = WEIGHT.HAS_PREFERRED_STRING;
-			}
 			for (const label in weights) {
 				weight += weights[label];
 			}
@@ -198,5 +197,13 @@ const stackClasses = async (query) => {
 	mongo.mongoose.connection.close();
 	return result;
 }
+
+const getSchedule = async () => {
+	await mongo.client();
+	let result = await ScheduleModel.find({})
+	.limit(1)
+	.lean()
+	.exec();
+}
  
-module.exports = {stackClasses};
+module.exports = {stackClasses, getSchedule};
