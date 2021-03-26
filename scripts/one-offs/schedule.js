@@ -1,7 +1,7 @@
-const combos = require('../user/combos');
-const ScheduleModel = require('../models/schedule');
-const ComboModel = require('../models/combo');
-const mongo = require('../lib/mongo');
+const combos = require('./combos');
+const ScheduleModel = require('../../models/schedule');
+const ComboModel = require('../../models/combo');
+const mongo = require('../../lib/mongo');
 const writeSchedule = async () => {
 	await mongo.client();
 	const result = await ScheduleModel.updateOne({_id:1}, {

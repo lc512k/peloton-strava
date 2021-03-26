@@ -101,10 +101,11 @@ const buildStack = async (queryDay, sendToBike) => {
 
 			if (doneIt) {
 				weights.doneIt = WEIGHT.DONE_IT;
-				console.log('DONE IT', classTemplate)
 				if (classTemplate.repeatsOK) {
 					weights.doneIt *= -1;
 				}
+				console.log(classTemplate)
+				console.log('DONE IT weight', weights.doneIt, 'favourite?', unweightedRide.is_favorite, unweightedRide.description)
 				console.log({weights})
 			}
 			for (const label in weights) {
