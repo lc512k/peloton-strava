@@ -1,4 +1,3 @@
-
 const fetch = require('node-fetch');
 module.exports = async () => {
 const options = {
@@ -8,9 +7,8 @@ const options = {
 			password: process.env.PASSWORD,
 		})
 	};
-	console.log({url: process.env.LOGIN_URL, options})
 	const response = await fetch(process.env.LOGIN_URL, options);
-	console.log({response})
+	console.log(`login: ${response.statusText}`)
 	return response.headers.get('set-cookie');
 }
 

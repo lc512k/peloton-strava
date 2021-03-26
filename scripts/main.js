@@ -1,4 +1,3 @@
-// const week = require('../user/schedule');
 const login = require('./login');
 const moment = require('moment');
 const mongo = require('../lib/mongo');
@@ -6,14 +5,15 @@ const WorkoutModel = require('../models/workout');
 const RideModel = require('../models/ride');
 const ScheduleModel = require('../models/schedule');
 const ComboModel = require('../models/combo');
-const classTypes = require('../meta/class-types.js');
 const instructorsHash = require('../meta/instructors-hash.js');
-const fetch = require('node-fetch');
 const FormData = require('form-data');
+const saveStack = require('../lib/graphql')
+const getIds = require('../lib/meta')
+const compare = require('../lib/tools')
 
 const NOW_TO_PAST = -1;
 const PAST_TO_NOW = 1;
-const FROM_DATE = 1514768461;
+const FROM_DATE = 1546300800; //2019-01-01
 let tomorrow;
 let cookie;
 
@@ -26,105 +26,53 @@ const WEIGHT = {
 	DONE_IT: process.env.DONE_IT || -2
 }
 
-function compare( a, b ) {
-  if ( a.weight < b.weight ){
-    return 1;
-  }
-  if ( a.weight > b.weight ){
-    return -1;
-  }
-  return 0;
-}
+const getRides = async (classTemplate) => {
 
-const getIds = (classTemplate) => {
-	const ids = [];
-	for (typeILike of classTemplate.classType) {
-		for (classType of classTypes) {
-			if (classType.display_name === typeILike && classType.fitness_discipline === classTemplate.discipline){
-				ids.push(classType.id);
-			}
-		}
-	}
 
-	if (ids.length === 0) {
-		console.error('ERROR found nothing for', classTemplate)
-	}
-	return ids;
-}
+	const include = classTemplate.includeStrings ? classTemplate.includeStrings.join('|') : '';
+	const exclude = classTemplate.excludeStrings || [];
+	console.log({exclude})
+	console.log({include})
+	let rides = await RideModel.find({
+		ride_type_id: {$in: getIds(classTemplate)},
+		duration: classTemplate.duration * 60,
+		language: 'english',
+		title: {$regex: include, $nin: exclude.map(item => new RegExp(item))},
+		original_air_time: {$gt: FROM_DATE}
+	})
+	.sort({original_air_time: NOW_TO_PAST})
+	.limit(10000)
+	.lean()
+	.exec();
 
-const saveStack = async (stack) => {
-	const graphqlResult = [];
-	for (let i = 0; i < stack.length; i++) {
-		const ride = stack[i];
-		const joinToken = ride.join_tokens.on_demand;
-		const response = await fetch("https://gql-graphql-gateway.prod.k8s.onepeloton.co.uk/graphql", {
-			"headers": {
-				"accept": "*/*",
-				"accept-language": "en-GB,en-US;q=0.9,en;q=0.8",
-				"content-type": "application/json",
-				"peloton-client-date": "2021-02-20T15:51:52.339Z",
-				"peloton-client-details": "eyJQbGF0Zm9ybSBUeXBlIjoiV2ViIiwiRm9ybSBGYWN0b3IiOiJIYW5kc2V0IiwiU2NyZWVuIFNpemUiOiI1NjcgeCA3NjQiLCJCcm93c2VyIjoiQ2hyb21lIiwiQnJvd3NlciBWZXJzaW9uIjoiODguMC40MzI0LjE1MCIsIk9wZXJhdGluZyBTeXN0ZW0iOiJNYWMgT1MiLCJTb3VyY2UiOiJPbi1EZW1hbmQgTGlicmFyeSIsIkFkZCAgTWV0aG9kIjoiQ2xhc3MgRGV0YWlscyIsIk9TIFZlcnNpb24iOiIxMS4xLjAifQ==",
-				"peloton-platform": "web",
-				"sec-ch-ua": "\"Chromium\";v=\"88\", \"Google Chrome\";v=\"88\", \";Not A Brand\";v=\"99\"",
-				"sec-ch-ua-mobile": "?0",
-				"sec-fetch-dest": "empty",
-				"sec-fetch-mode": "cors",
-				"sec-fetch-site": "same-site",
-				"cookie": process.env.COOKIE
-			},
-			"referrer": process.env.REFERRER,
-			"referrerPolicy": "strict-origin-when-cross-origin",
-			"body": `{\"operationName\":\"AddClassToStack\",\"variables\":{\"input\":{\"pelotonClassId\":\"${joinToken}\"}},\"query\":\"mutation AddClassToStack($input: AddClassToStackInput!) {\\n  addClassToStack(input: $input) {\\n    numClasses\\n    totalTime\\n    userStack {\\n      stackedClassList {\\n        playOrder\\n        pelotonClass {\\n          ...ClassDetails\\n          __typename\\n        }\\n        __typename\\n      }\\n      __typename\\n    }\\n    __typename\\n  }\\n}\\n\\nfragment ClassDetails on PelotonClass {\\n  joinToken\\n  title\\n  classId\\n  fitnessDiscipline {\\n    slug\\n    __typename\\n  }\\n  assets {\\n    thumbnailImage {\\n      location\\n      __typename\\n    }\\n    __typename\\n  }\\n  duration\\n  ... on OnDemandInstructorClass {\\n    title\\n    fitnessDiscipline {\\n      slug\\n      displayName\\n      __typename\\n    }\\n    contentFormat\\n    difficultyLevel {\\n      slug\\n      displayName\\n      __typename\\n    }\\n    airTime\\n    instructor {\\n      name\\n      __typename\\n    }\\n    __typename\\n  }\\n  classTypes {\\n    name\\n    __typename\\n  }\\n  playableOnPlatform\\n  __typename\\n}\\n\"}`,
-			"method": "POST",
-			"mode": "cors"
-		});
-		console.log(ride.title, response.status)
-		graphqlResult.push(ride.title)
-	}
-	return graphqlResult
+	console.log({classType: classTemplate.classType, hits: rides.length});
+
+	return rides;
 }
 
 const buildStack = async (queryDay, sendToBike) => {
-	console.log({queryDay})
+	console.log(`queryDay: ${queryDay}\n`)
 	await mongo.client();
 
 	let today = moment();
 	tomorrow = queryDay || process.env.TESTDAY || moment().add(1,'days').format('dddd');
 
 	const week = await ScheduleModel.find().lean().exec();
-	console.log("**** week", week[0])
-	console.log("**** week tomorrow", week[0][tomorrow])
-	console.log({tomorrow})
 	const schedule = week[0][tomorrow];
-	console.log({schedule})
+	console.log(`${tomorrow} schedule:`, schedule)
 
 	const response = [];
 
 	for (let classTemplateId of schedule) {
 		const classTemplate = await ComboModel.findOne({_id: classTemplateId}).lean().exec();
 		console.log("**** classTemplate", classTemplate)
-		const include = classTemplate.includeStrings ? classTemplate.includeStrings.join('|') : '';
-		const exclude = classTemplate.excludeStrings || [];
-		console.log({exclude})
-		console.log({include})
+		let rides = await getRides(classTemplate);
 
-		let result = await RideModel.find({
-			ride_type_id: {$in: getIds(classTemplate)},
-			duration: classTemplate.duration * 60,
-			language: 'english',
-			title: {$regex: include, $nin: exclude.map(item => new RegExp(item))},
-			original_air_time: {$gt: FROM_DATE}
-		})
-		.sort({original_air_time: NOW_TO_PAST})
-		.limit(10000)
-		.lean()
-		.exec();
-
-		console.log({classType: classTemplate.classType, hits: result.length});
+		console.log({rides})
 
 		let counter = 5;
 
-		for (unweightedRide of result) {
+		for (unweightedRide of rides) {
 			let weight = 0;
 			let weights = {}
 
@@ -166,15 +114,15 @@ const buildStack = async (queryDay, sendToBike) => {
 			counter = counter/1.1;
 		}
 
-		result.sort(compare);
-		console.log(result.map(({weights, weight, title, instructor_id}) => ({weights, weight, title, instructor: instructorsHash[instructor_id]?instructorsHash[instructor_id].name:'NONAME'})).slice(0,5))
-		let selected = result[0];
+		rides.sort(compare);
+		console.log(rides.map(({weights, weight, title, instructor_id}) => ({weights, weight, title, instructor: instructorsHash[instructor_id]?instructorsHash[instructor_id].name:'NONAME'})).slice(0,5))
+		let selected = rides[0];
 
 		if (classTemplate.random) {
 			console.log('RANDOM OK for ', classTemplate.classType)
 			const randomPos = Math.floor(Math.random() * 5) + 1 ;
 			console.log({randomPos})
-			selected = result[randomPos]
+			selected = rides[randomPos]
 		}
 
 		response.push(selected);
@@ -187,8 +135,10 @@ const buildStack = async (queryDay, sendToBike) => {
 const stackClasses = async (query) => {
 	await mongo.client();
 	cookie = await login();
+	const day = query ? query.day : undefined;
 
-	const stack = await buildStack(query ? query.day : undefined);
+	const stack = await buildStack(day);
+
 	let graphqlresult;
 
 	if ((process.env.SEND_TO_BIKE && !query) || (query && query.sendToBike)) {
@@ -204,12 +154,4 @@ const stackClasses = async (query) => {
 	return result;
 }
 
-const getSchedule = async () => {
-	await mongo.client();
-	let result = await ScheduleModel.find({})
-	.limit(1)
-	.lean()
-	.exec();
-}
- 
-module.exports = {stackClasses, getSchedule};
+module.exports = {stackClasses};
