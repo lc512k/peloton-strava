@@ -8,7 +8,7 @@ const comboSchema = new mongoose.Schema({
 	discipline: String,
 	titlePreferredStrings: [String],
 	titleExcludeStrings: [String],
-	preferredInstructors: [Object],
+	preferredInstructors: Object,
 	repeatsOK: Boolean,
 	random: Boolean
 });

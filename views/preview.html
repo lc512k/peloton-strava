@@ -2,8 +2,8 @@
 <div class="list">
 	<img src={{image_url}} width="200px"><br>
 	<b>{{title}}</b><br>
-	RIDE ID HERE<br>
-	Air date here<br>
+	ID: {{_id}}<br>
+	Date: {{date}}<br>
 	{{#if difficulty_level}}Level: {{difficulty_level}}<br>{{/if}}
 	Difficulty: {{difficulty_rating_avg}}<br>
 	Weight: {{weight}}<br>
@@ -11,12 +11,10 @@
 		{{#if weights.instructor}} <li>Instructor: {{weights.instructor}}</li>{{/if}}
 		{{#if weights.recency}} <li>Recency: {{weights.recency}}</li>{{/if}}
 		{{#if weights.ease}} <li>Ease: {{weights.ease}}</li>{{/if}}
-		{{#if weights.preferredString}} <li>PreferredString: {{weights.preferredString}}</li>{{/if}}
-		{{#if weights.excludedString}} <li>ExcludedString: {{weights.excludedString}}</li>{{/if}}
 		{{#if weights.doneIt}} <li>DoneIt: {{weights.doneIt}}</li>{{/if}}
-		{{#if weights.rock}} <li>Rock: {{weights.rock}}</li>{{/if}}
-		{{#if weights.pop}} <li>Pop: {{weights.pop}}</li>{{/if}}
-		{{#if weights.hiit}} <li>HIIT: {{weights.hiit}}</li>{{/if}}
+		{{#if weights.title}} <li>Title: {{weights.title}}</li>{{/if}}
+		{{#if weights.fav}} <li>Favourite: {{weights.fav}}</li>{{/if}}
+		{{#if weights.randomNoise}} <li>Random: {{weights.randomNoise}}</li>{{/if}}
 	<br>
 </div>
 {{/each}}

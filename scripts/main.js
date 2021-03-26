@@ -18,17 +18,15 @@ let tomorrow;
 let cookie;
 
 const WEIGHT = {
-	ROCK: process.env.ROCK || -5,
-	HIIT: process.env.HIIT || -5,
-	POP: process.env.POP || 1,
-	INSTRUCTOR_MAX: process.env.INSTRUCTOR_MAX ||  2,
-	EASE_MULTIPLIER: process.env.EASE_MULTIPLIER || 0.5,
-	DONE_IT: process.env.DONE_IT || -2
+	NOT_MY_STYLE: process.env.NOT_MY_STYLE || -5,
+	MY_STYLE: process.env.MY_STYLE || 1,
+	INSTRUCTOR_MAX: process.env.INSTRUCTOR_MAX ||  5,
+	EASE_MULTIPLIER: process.env.EASE_MULTIPLIER || 0,
+	DONE_IT: process.env.DONE_IT || -5,
+	FAV: process.env.FAV || 2
 }
 
 const getRides = async (classTemplate) => {
-
-
 	const include = classTemplate.includeStrings ? classTemplate.includeStrings.join('|') : '';
 	const exclude = classTemplate.excludeStrings || [];
 	console.log({exclude})
@@ -46,8 +44,72 @@ const getRides = async (classTemplate) => {
 	.exec();
 
 	console.log({classType: classTemplate.classType, hits: rides.length});
-
 	return rides;
+}
+
+const getTitleWeight = (rawRide, classTemplate) => {
+	let result = 0;
+	const title = rawRide.title.toLowerCase();
+	if (title.includes('rock') || title.includes('country')|| title.includes('hiit')){
+		result += WEIGHT.NOT_MY_STYLE;
+	}
+	if (title.includes('pop') || title.includes('xoxo')){
+		result += WEIGHT.MY_STYLE;
+	}
+	return result;
+}
+
+const getInstructorWeight = (rawRide, classTemplate) => {
+	let result = 0;
+	const name = instructorsHash[rawRide.instructor_id] ? instructorsHash[rawRide.instructor_id].name : 'NOT FOUND';
+
+	if (Object.keys(classTemplate.preferredInstructors).includes(name)){
+		result += classTemplate.preferredInstructors[name];
+	}
+	else {
+		result += -WEIGHT.INSTRUCTOR_MAX
+	}
+	return result;
+}
+
+const getDoneItWeight = async (rawRide, classTemplate) => {
+	let result = 0;
+	const workout = await WorkoutModel.find({ride_id:rawRide._id});
+	const doneIt = workout.length > 0;
+
+	if (doneIt) {
+		result = WEIGHT.DONE_IT;
+		if (classTemplate.repeatsOK) {
+			result *= -1;
+		}	
+		return result;
+	}
+	return 0;
+}
+
+const getEaseWeight = (rawRide, classTemplate) => {
+	let result = 0;
+	result = WEIGHT.EASE_MULTIPLIER*(10 - (rawRide.difficulty_rating_avg || 10));
+	return result;
+	return 0;
+}
+
+const getRandomNoise = (rawRide, classTemplate) => {
+	if (classTemplate.random) {
+		return Math.random()*5;
+	}
+	return 0;
+}
+
+const getRecencyWeight = (rawRide, classTemplate) => {
+	let result = 0;
+	result = rawRide.original_air_time / 1000000000;
+	return Math.pow(result, 5);
+}
+const getFavWeight = (rawRide, classTemplate) => {
+	let result = 0;
+	result = rawRide.is_favorite ? WEIGHT.FAV : 0;
+	return result;
 }
 
 const buildStack = async (queryDay, sendToBike) => {
@@ -65,66 +127,39 @@ const buildStack = async (queryDay, sendToBike) => {
 
 	for (let classTemplateId of schedule) {
 		const classTemplate = await ComboModel.findOne({_id: classTemplateId}).lean().exec();
-		console.log("**** classTemplate", classTemplate)
+		console.log("**********\nclassTemplate", classTemplate)
 		let rides = await getRides(classTemplate);
 
-		console.log({rides})
+		for (rawRide of rides) {
+			let totalWeight = 0;
+			rawRide.weights = {}
+			rawRide.weights.instructor = getInstructorWeight(rawRide, classTemplate);
+			rawRide.weights.doneIt = await getDoneItWeight(rawRide, classTemplate);
+			rawRide.weights.randomNoise = getRandomNoise(rawRide, classTemplate);
+			rawRide.weights.recency = getRecencyWeight(rawRide, classTemplate);
+			rawRide.weights.title = getTitleWeight(rawRide, classTemplate);
+			rawRide.weights.ease = getEaseWeight(rawRide, classTemplate);
+			rawRide.weights.fav = getFavWeight(rawRide, classTemplate);
 
-		let counter = 5;
-
-		for (unweightedRide of rides) {
-			let weight = 0;
-			let weights = {}
-
-			if (unweightedRide.title.toLowerCase().includes('rock')){
-				weights.rock = WEIGHT.ROCK;
+			for (const label in rawRide.weights) {
+				totalWeight += rawRide.weights[label];
 			}
-			if (unweightedRide.title.toLowerCase().includes('pop')){
-				weights.pop = WEIGHT.POP;
-			}
-			if (unweightedRide.title.toLowerCase().includes('HIIT')){
-				weights.hiit = WEIGHT.HIIT;
-			}
-			const name = instructorsHash[unweightedRide.instructor_id] ? instructorsHash[unweightedRide.instructor_id].name : 'NOT FOUND';
-			if (Object.keys(classTemplate.preferredInstructors).includes(name)){
-				weights.instructor = classTemplate.preferredInstructors[name]/WEIGHT.INSTRUCTOR_MAX;
-			}
-			else {
-				weights.instructor = -WEIGHT.INSTRUCTOR_MAX
-			}
-			weights.recency = counter;
-			weights.ease = WEIGHT.EASE_MULTIPLIER*(10 - (unweightedRide.difficulty_rating_avg || 10));
-			unweightedRide.weights = weights;
-
-			const workout = await WorkoutModel.find({ride_id:unweightedRide._id});
-			const doneIt = workout.length > 0;
-
-			if (doneIt) {
-				weights.doneIt = WEIGHT.DONE_IT;
-				if (classTemplate.repeatsOK) {
-					weights.doneIt *= -1;
-				}
-				console.log(classTemplate)
-				console.log('DONE IT weight', weights.doneIt, 'favourite?', unweightedRide.is_favorite, unweightedRide.description)
-				console.log({weights})
-			}
-			for (const label in weights) {
-				weight += weights[label];
-			}
-			unweightedRide.weight = weight;
-			counter = counter/1.1;
+			rawRide.weight = totalWeight;
 		}
 
-		rides.sort(compare);
-		console.log(rides.map(({weights, weight, title, instructor_id}) => ({weights, weight, title, instructor: instructorsHash[instructor_id]?instructorsHash[instructor_id].name:'NONAME'})).slice(0,5))
-		let selected = rides[0];
+		rides = rides.sort(compare);
 
-		if (classTemplate.random) {
-			console.log('RANDOM OK for ', classTemplate.classType)
-			const randomPos = Math.floor(Math.random() * 5) + 1 ;
-			console.log({randomPos})
-			selected = rides[randomPos]
-		}
+		rides = rides.map(({weights, weight, title, instructor_id, _id, original_air_time, image_url}) => ({
+				_id,
+				date: moment.unix(original_air_time).format('DD/MM/YYYY'), 
+				weights, 
+				weight, 
+				image_url,
+				title, 
+				instructor: instructorsHash[instructor_id] ? instructorsHash[instructor_id].name:'NONAME'
+		}));
+		console.log(JSON.stringify(rides.slice(0,5), null, 2))
+		const selected = rides[0];
 
 		response.push(selected);
 		console.log('\n')

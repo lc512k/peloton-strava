@@ -24,7 +24,7 @@ exports.ride_60_arms = build('cycling',60, {'Cody Rigsby': 10, 'Robin Arzon': 10
 exports.postRideStretch_5 = build('stretching', 5, {'Cody Rigsby': 10, 'Tunde Oyeneyin': 10, 'Robin Arzon': 10}, ['Pre & Post-Ride Stretch'], ['Post'], null, true, true)
 exports.armsStretch_10 = build('stretching', 10, {'Andy Speer': 10, 'Hannah Corbin': 10, 'Denis Morton': 10}, ['Upper Body Stretch'], ['Arms'], ['Foam', 'Ride'], false, true)
 exports.chestStretch_10 = build('stretching', 10, {'Andy Speer': 10, 'Hannah Corbin': 10, 'Denis Morton': 10}, ['Upper Body Stretch'], ['Chest'], ['Foam', 'Ride'], false, true)
-exports.fullBodyStretch_10 = build('stretching', 10, {'Andy Speer': 10, 'Hannah Corbin': 10, 'Denis Morton': 10}, ['Full Body Stretch'], null, ['Foam', 'Ride', 'Warm'], false, true)
+exports.fullBodyStretch_10 = build('stretching', 10, {'Andy Speer': 10, 'Hannah Corbin': 10, 'Denis Morton': 10}, ['Full Body Stretch'], null, ['Foam', 'Post-Ride', 'Warm'], false, true)
 exports.upperBodyStretch_10 = build('stretching', 10, {'Andy Speer': 10, 'Hannah Corbin': 10, 'Denis Morton': 10}, ['Upper Body Stretch'], null, ['Foam', 'Ride'], false, true)
 exports.lowerBodyStretch_10 = build('stretching', 10, {'Andy Speer': 10, 'Hannah Corbin': 10, 'Denis Morton': 10}, ['Lower Body Stretch'], null, ['Foam', 'Ride'], false, true)
 /////// YOGA ///////
