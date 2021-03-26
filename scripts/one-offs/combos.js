@@ -1,10 +1,10 @@
-const build = (discipline, duration, preferredInstructors, classType, includeStrings, excludeStrings, repeatsOK, random) => {
+const build = (discipline, duration, preferredInstructors, classType, titleIncludeStrings, titleExcludeStrings, repeatsOK, random) => {
 	return {
 		classType,
 		duration,
-		includeStrings,
+		titleIncludeStrings,
+ 		titleExcludeStrings,
 		discipline,
- 		excludeStrings,
 		preferredInstructors,
 		repeatsOK,
 		random
@@ -22,11 +22,11 @@ exports.ride_45_arms = build('cycling',45, {'Cody Rigsby': 10, 'Robin Arzon': 10
 exports.ride_60_arms = build('cycling',60, {'Cody Rigsby': 10, 'Robin Arzon': 10}, ['Music', 'Theme', 'Groove', 'Live DJ'], ['Arms'], ['Endurance']);
 /////// STRETCHING ///////
 exports.postRideStretch_5 = build('stretching', 5, {'Cody Rigsby': 10, 'Tunde Oyeneyin': 10, 'Robin Arzon': 10}, ['Pre & Post-Ride Stretch'], ['Post'], null, true, true)
-exports.armsStretch_10 = build('stretching', 10, {'Andy Speer': 10, 'Hannah Corbin': 10, 'Denis Morton': 10}, ['Upper Body Stretch'], ['Arms'], ['Foam', 'Ride'], false, true)
-exports.chestStretch_10 = build('stretching', 10, {'Andy Speer': 10, 'Hannah Corbin': 10, 'Denis Morton': 10}, ['Upper Body Stretch'], ['Chest'], ['Foam', 'Ride'], false, true)
+exports.armsStretch_10 = build('stretching', 10, {'Andy Speer': 10, 'Hannah Corbin': 10, 'Denis Morton': 10}, ['Upper Body Stretch'], ['Arms'], ['Foam', 'Post-Ride', 'Warm'], false, true)
+exports.chestStretch_10 = build('stretching', 10, {'Andy Speer': 10, 'Hannah Corbin': 10, 'Denis Morton': 10}, ['Upper Body Stretch'], ['Chest'], ['Foam', 'Post-Ride', 'Warm'], false, true)
 exports.fullBodyStretch_10 = build('stretching', 10, {'Andy Speer': 10, 'Hannah Corbin': 10, 'Denis Morton': 10}, ['Full Body Stretch'], null, ['Foam', 'Post-Ride', 'Warm'], false, true)
-exports.upperBodyStretch_10 = build('stretching', 10, {'Andy Speer': 10, 'Hannah Corbin': 10, 'Denis Morton': 10}, ['Upper Body Stretch'], null, ['Foam', 'Ride'], false, true)
-exports.lowerBodyStretch_10 = build('stretching', 10, {'Andy Speer': 10, 'Hannah Corbin': 10, 'Denis Morton': 10}, ['Lower Body Stretch'], null, ['Foam', 'Ride'], false, true)
+exports.upperBodyStretch_10 = build('stretching', 10, {'Andy Speer': 10, 'Hannah Corbin': 10, 'Denis Morton': 10}, ['Upper Body Stretch'], null, ['Foam', 'Post-Ride', 'Warm'], false, true)
+exports.lowerBodyStretch_10 = build('stretching', 10, {'Andy Speer': 10, 'Hannah Corbin': 10, 'Denis Morton': 10}, ['Lower Body Stretch'], null, ['Foam', 'Post-Ride', 'Warm'], false, true)
 /////// YOGA ///////
 exports.focusFlowYoga_10 = build('yoga', 10, {'Aditi Shah': 10, 'Anna Greenberg': 10, 'Denis Morton': 10}, ['Focus Flow'], ['Hips'])
 exports.focusFlowYoga_20 = build('yoga', 20, {'Aditi Shah': 10, 'Anna Greenberg': 10, 'Denis Morton': 10}, ['Focus Flow'], ['Hips'])

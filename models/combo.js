@@ -5,9 +5,8 @@ const comboSchema = new mongoose.Schema({
 	classType: [String],
 	duration: Number,
 	titleSearchStrings: [String],
-	discipline: String,
-	titlePreferredStrings: [String],
 	titleExcludeStrings: [String],
+	discipline: String,
 	preferredInstructors: Object,
 	repeatsOK: Boolean,
 	random: Boolean
