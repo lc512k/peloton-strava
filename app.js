@@ -2,29 +2,34 @@ const express = require('express');
 const mongo = require('./lib/mongo');
 const main = require('./scripts/main.js');
 const exphbs = require('express-handlebars');
+const security = require('./middleware/security')
 
 const app = express();
+app.use(security)
+
 app.set('view engine', '.html');
 const handlebarsInstance = exphbs.create({
 	extname: '.html',
 	defaultLayout: 'main'
 });
 app.engine('html', handlebarsInstance.engine);
-app.use((req, res, next) => {
-	if (req.query.apikey && req.query.apikey === process.env.APIKEY){
-		next();
+
+app.get('/schedule', async(req, res) => {
+	await mongo.client();
+	const getSchedule = async () => {
+		await mongo.client();
+		let result = await ScheduleModel.find({})
+		.limit(1)
+		.lean()
+		.exec();
 	}
-	else {
-		res.status(401).send('You need an API key - Eg, ?apikey=123...');
-	}
+	res.render('schedule', schedule)
 })
-app.get('/json', async (req, res) => res.json(await main.stackClasses()));
+
 app.get('/preview', async (req, res) => { 
 	const result = await main.stackClasses(req.query);
 	res.render('preview', result);
 });
-
-
 
 mongo.client()
 	.then(() => {
