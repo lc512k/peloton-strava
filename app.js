@@ -3,8 +3,23 @@ const mongo = require('./lib/mongo');
 const main = require('./scripts/main.js');
 const exphbs = require('express-handlebars');
 const security = require('./middleware/security')
+const ScheduleModel = require('./models/schedule');
+const bodyParser = require('body-parser')
 
 const app = express();
+
+app.use(bodyParser.urlencoded({extended: false}));
+app.post('/save', async (req, res) => { 
+	await mongo.client();
+	try {
+		const newSchedule = JSON.parse(req.body.schedule);		
+		const result = await ScheduleModel.updateOne({_id:newSchedule._id}, newSchedule, {upsert: true, setDefaultsOnInsert: true});
+		res.send(result)
+	} catch(e) {
+		res.send(e.toString())
+	}
+});
+
 app.use(security)
 
 app.set('view engine', '.html');
@@ -16,14 +31,14 @@ app.engine('html', handlebarsInstance.engine);
 
 app.get('/schedule', async(req, res) => {
 	await mongo.client();
-	const getSchedule = async () => {
-		await mongo.client();
-		let result = await ScheduleModel.find({})
+	let schedule = await ScheduleModel.findOne({})
 		.limit(1)
 		.lean()
 		.exec();
-	}
-	res.render('schedule', schedule)
+
+	let scheduleStr = JSON.stringify(schedule, Object.keys(schedule).sort(), 2);
+	console.log({scheduleStr})
+	res.render('schedule', {scheduleStr});
 })
 
 app.get('/preview', async (req, res) => { 

@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/lc512k/peloton-strava#readme",
   "dependencies": {
+    "body-parser": "^1.19.0",
     "eslint": "^7.20.0",
     "express": "^4.17.1",
     "express-handlebars": "^5.2.1",
