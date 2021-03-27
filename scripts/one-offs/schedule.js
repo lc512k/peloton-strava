@@ -53,11 +53,13 @@ const writeSchedule = async () => {
 		'chestStrength_20',
 		'chestStretch_10'
 	]}, {upsert: true, setDefaultsOnInsert: true});
-	console.log(result);
+	console.log('schedule', result);
 }
 
 ( async () => {
 	await mongo.client();
+	
+	await writeSchedule();
 	
 	let result = await ComboModel.updateOne({_id:'warmUpRide_5'}, combos.warmUpRide_5, {upsert: true, setDefaultsOnInsert: true});
 	console.log(result);
