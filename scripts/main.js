@@ -151,12 +151,13 @@ const buildStack = async (queryDay, sendToBike) => {
 
 		rides = rides.sort(compare);
 
-		rides = rides.map(({weights, weight, title, instructor_id, _id, original_air_time, image_url}) => ({
+		rides = rides.map(({weights, weight, title, instructor_id, _id, original_air_time, join_tokens, image_url}) => ({
 				_id,
 				date: moment.unix(original_air_time).format('DD/MM/YYYY'), 
 				weights, 
 				weight, 
 				image_url,
+				join_tokens,
 				title, 
 				instructor: instructorsHash[instructor_id] ? instructorsHash[instructor_id].name:'NONAME'
 		}));
