@@ -27,15 +27,17 @@ const WEIGHT = {
 }
 
 const getRides = async (classTemplate) => {
-	const include = classTemplate.includeStrings ? classTemplate.includeStrings.join('|') : '';
-	const exclude = classTemplate.excludeStrings || [];
+	const include = classTemplate.titleIncludeStrings ? classTemplate.titleIncludeStrings.join('|') : '';
+	const exclude = classTemplate.titleExcludeStrings || [];
 	console.log({exclude})
 	console.log({include})
+	const nin = exclude.map(item => new RegExp(item));
+	console.log({nin})
 	let rides = await RideModel.find({
 		ride_type_id: {$in: getIds(classTemplate)},
 		duration: classTemplate.duration * 60,
 		language: 'english',
-		title: {$regex: include, $nin: exclude.map(item => new RegExp(item))},
+		title: {$regex: include, $nin: nin},
 		original_air_time: {$gt: FROM_DATE}
 	})
 	.sort({original_air_time: NOW_TO_PAST})
@@ -127,7 +129,7 @@ const buildStack = async (queryDay, sendToBike) => {
 
 	for (let classTemplateId of schedule) {
 		const classTemplate = await ComboModel.findOne({_id: classTemplateId}).lean().exec();
-		console.log("**********\nclassTemplate", classTemplate)
+		console.log("**************\nclassTemplate\n**************", classTemplate)
 		let rides = await getRides(classTemplate);
 
 		for (rawRide of rides) {
@@ -158,11 +160,12 @@ const buildStack = async (queryDay, sendToBike) => {
 				title, 
 				instructor: instructorsHash[instructor_id] ? instructorsHash[instructor_id].name:'NONAME'
 		}));
-		console.log(JSON.stringify(rides.slice(0,5), null, 2))
+		console.log('-------\nTOP 5 CANDIDATES\n-------')
+		console.log(rides.slice(0,5))
 		const selected = rides[0];
 
 		response.push(selected);
-		console.log('\n')
+		console.log('\n\n\n')
 	
 	}
 	return response;
