@@ -1,9 +1,9 @@
-const mongo = require('../../lib/mongo');
+const mongo = require('../lib/mongo');
 const fetch = require('node-fetch');
-const login = require('../login');
-const instructorsHash = require('../../meta/instructors-hash.js');
+const login = require('./login');
+const instructorsHash = require('../meta/instructors-hash.js');
 
-const WorkoutModel = require('../../models/workout');
+const WorkoutModel = require('../models/workout');
 
 const run = async () => {
 	await mongo.client();
