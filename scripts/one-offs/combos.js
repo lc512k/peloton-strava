@@ -11,7 +11,8 @@ const build = (discipline, duration, preferredInstructors, classType, titleInclu
 	};
 }
 /////// CYCLING ///////
-exports.warmUpRide_5 = build('cycling',5, {'Cody Rigsby': 10, 'Tunde Oyeneyin': 10, 'Robin Arzon': 10, 'Ben Aldis': 8}, ['Low Impact'], ['Warm Up'], ['Cool Down'], true, true);
+exports.warmUpRide_10 = build('cycling', 10, {'Cody Rigsby': 10, 'Tunde Oyeneyin': 10, 'Robin Arzon': 10, 'Ben Aldis': 8}, ['Low Impact'], ['Warm Up'], ['Cool Down'], true, true);
+exports.warmUpRide_5 = build('cycling', 5, {'Cody Rigsby': 10, 'Tunde Oyeneyin': 10, 'Robin Arzon': 10, 'Ben Aldis': 8}, ['Low Impact'], ['Warm Up'], ['Cool Down'], true, true);
 exports.coolDownRide_5 = build('cycling',5, {'Cody Rigsby': 10, 'Tunde Oyeneyin': 10, 'Robin Arzon': 10, 'Ben Aldis': 8}, ['Low Impact'], ['Cool Down'], ['Warm Up'], true, true);
 exports.recoveryRide_20 = build('cycling',20, {'Cody Rigsby': 10, 'Tunde Oyeneyin': 8}, ['Low Impact', 'Beginner'], ['Recovery', 'Low Impact'], ['Prenatal']);
 exports.ride_20 = build('cycling',20, {'Cody Rigsby': 10, 'Robin Arzon': 8, 'Robin Arzon': 5}, ['Music', 'Theme', 'Groove'], null, ['Arms', 'Endurance']);
@@ -27,19 +28,27 @@ exports.chestStretch_10 = build('stretching', 10, {'Andy Speer': 10, 'Hannah Cor
 exports.fullBodyStretch_10 = build('stretching', 10, {'Andy Speer': 10, 'Hannah Corbin': 10, 'Denis Morton': 10}, ['Full Body Stretch'], null, ['Seated', 'Foam', 'Post-Ride', 'Warm'], false, true)
 exports.upperBodyStretch_10 = build('stretching', 10, {'Andy Speer': 10, 'Hannah Corbin': 10, 'Denis Morton': 10}, ['Upper Body Stretch'], null, ['Seated', 'Foam', 'Post-Ride', 'Warm'], false, true)
 exports.lowerBodyStretch_10 = build('stretching', 10, {'Andy Speer': 10, 'Hannah Corbin': 10, 'Denis Morton': 10}, ['Lower Body Stretch'], null, ['Seated', 'Foam', 'Post-Ride', 'Warm'], false, true)
+exports.upperBodyStretch_5 = build('stretching', 5, {'Andy Speer': 10, 'Hannah Corbin': 10, 'Denis Morton': 10}, ['Upper Body Stretch'], null, ['Post-Ride', 'Warm', 'Foam'], false, true)
+exports.lowerBodyStretch_5 = build('stretching', 5, {'Andy Speer': 10, 'Hannah Corbin': 10, 'Denis Morton': 10}, ['Lower Body Stretch'], null, ['Post-Ride', 'Warm', 'Foam'], false, true)
 /////// YOGA ///////
-exports.focusFlowYoga_10 = build('yoga', 10, {'Aditi Shah': 10, 'Anna Greenberg': 10, 'Denis Morton': 10}, ['Focus Flow'], ['Hips'])
-exports.focusFlowYoga_20 = build('yoga', 20, {'Aditi Shah': 10, 'Anna Greenberg': 10, 'Denis Morton': 10}, ['Focus Flow'], ['Hips'])
+exports.focusFlowYogaHips_10 = build('yoga', 10, {'Aditi Shah': 10, 'Anna Greenberg': 10, 'Denis Morton': 10}, ['Focus Flow'], ['Hips'])
+exports.focusFlowYoga_10 = build('yoga', 10, {'Aditi Shah': 10, 'Anna Greenberg': 10, 'Denis Morton': 10}, ['Focus Flow'])
+exports.focusFlowYoga_20 = build('yoga', 20, {'Aditi Shah': 10, 'Anna Greenberg': 10, 'Denis Morton': 10}, ['Focus Flow'])
 exports.slowFlowYoga_20 = build('yoga', 20, {'Aditi Shah': 10, 'Anna Greenberg': 10, 'Denis Morton': 10}, ['Slow Flow'])
 exports.slowFlowYoga_45 = build('yoga', 45, {'Aditi Shah': 10, 'Anna Greenberg': 10, 'Denis Morton': 10}, ['Slow Flow'])
 exports.restorativeYoga_20 = build('yoga', 20, {'Aditi Shah': 10, 'Anna Greenberg': 10, 'Denis Morton': 10}, ['Restorative'])
 exports.restorativeYoga_30 = build('yoga', 30, {'Aditi Shah': 10, 'Anna Greenberg': 10, 'Denis Morton': 10}, ['Restorative'])
 /////// STRENGTH ////////
+exports.core_5 = build('strength', 5, {'Andy Speer': 9, 'Chase Tucker': 10, 'Robin Arzon': 10, 'Adrian Williams': 10}, ['Core']) 
 exports.core_10 = build('strength', 10, {'Andy Speer': 9, 'Chase Tucker': 10, 'Robin Arzon': 10, 'Adrian Williams': 10}, ['Core']) 
 exports.lowerBodyStrength_30 = build('strength', 30, {'Andy Speer': 9, 'Chase Tucker': 10, 'Robin Arzon': 10, 'Adrian Williams': 10}, ['Lower Body'], ['Lower Body']) 
-exports.uperBodyStrength_30 = build('strength', 30, {'Andy Speer': 9, 'Chase Tucker': 10, 'Robin Arzon': 10, 'Adrian Williams': 10}, ['Upper Body'], ['Upper Body']) 
+exports.upperBodyStrength_30 = build('strength', 30, {'Andy Speer': 9, 'Chase Tucker': 10, 'Robin Arzon': 10, 'Adrian Williams': 10}, ['Upper Body'], ['Upper Body']) 
+exports.lowerBodyWarmUp_5 = build('strength', 5, {'Andy Speer': 9, 'Chase Tucker': 10, 'Robin Arzon': 10, 'Adrian Williams': 10}, ['Warm Up'], ['Lower Body'], null, true, true) 
+exports.upperBodyWarmUp_5 = build('strength', 5, {'Andy Speer': 9, 'Chase Tucker': 10, 'Robin Arzon': 10, 'Adrian Williams': 10}, ['Warm Up'], ['Upper Body'], null, true, true) 
+exports.fullBodyWarmUp_10 = build('strength', 10, {'Andy Speer': 9, 'Chase Tucker': 10, 'Robin Arzon': 10, 'Adrian Williams': 10}, ['Warm Up'], ['Full Body'], null, true, true) 
+exports.coreWarmUp_5 = build('strength', 5, {'Andy Speer': 9, 'Chase Tucker': 10, 'Robin Arzon': 10, 'Adrian Williams': 10}, ['Warm Up'], ['Core'], null, true, true) 
 exports.lowerBodyStrength_20 = build('strength', 20, {'Andy Speer': 9, 'Chase Tucker': 10, 'Robin Arzon': 10, 'Adrian Williams': 10}, ['Lower Body'], ['Lower Body']) 
-exports.uperBodyStrength_20 = build('strength', 20, {'Andy Speer': 9, 'Chase Tucker': 10, 'Robin Arzon': 10, 'Adrian Williams': 10}, ['Upper Body'], ['Upper Body']) 
+exports.upperBodyStrength_20 = build('strength', 20, {'Andy Speer': 9, 'Chase Tucker': 10, 'Robin Arzon': 10, 'Adrian Williams': 10}, ['Upper Body'], ['Upper Body']) 
 exports.armsStrength_30 = build('strength', 30, {'Andy Speer': 9, 'Chase Tucker': 10, 'Robin Arzon': 10, 'Adrian Williams': 10}, ['Upper Body'], ['Arms']) 
 exports.armsStrength_20 = build('strength', 20, {'Andy Speer': 9, 'Chase Tucker': 10, 'Robin Arzon': 10, 'Adrian Williams': 10}, ['Upper Body'], ['Arms']) 
 exports.chestStrength_20 = build('strength', 20, {'Andy Speer': 9, 'Chase Tucker': 10, 'Robin Arzon': 10, 'Adrian Williams': 10}, ['Upper Body'], ['Chest']) 

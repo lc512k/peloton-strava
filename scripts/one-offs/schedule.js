@@ -6,40 +6,47 @@ const writeSchedule = async () => {
 	await mongo.client();
 	const result = await ScheduleModel.updateOne({_id:1}, {
 	Monday: [
-		'fullBodyStretch_10',
-		'focusFlowYoga_10',
+		'fullBodyWarmUp_10',
+		'focusFlowYogaHips_10',
 		'restorativeYoga_20',
 		'walk_20'
 	],
 	Tuesday: [
-		'fullBodyStretch_10',
+		'fullBodyWarmUp_10',
 		'core_10',
-		'warmUpRide_5',
+		'warmUpRide_10',
 		'ride_30',
 		'coolDownRide_5',
 		'postRideStretch_5',
-		'focusFlowYoga_10'
+		'focusFlowYoga_20'
 	],
 	Wednesday: [
-		'fullBodyStretch_10',
+		'upperBodyWarmUp_5',
+		'upperBodyStretch_5',
+		'warmUpRide_5',
 		'ride_45_arms',
 		'coolDownRide_5',
 		'postRideStretch_5',
 		'walk_20'
 	],
 	Thursday: [
+		'fullBodyWarmUp_10',
+		'core_10',
 		'slowFlowYoga_45',
-		'focusFlowYoga_10'
+		'focusFlowYoga_20'
 	], 
 	Friday: [
-		'fullBodyStretch_10',
+		'lowerBodyWarmUp_5',
+		'lowerBodyStretch_5',
+		'warmUpRide_5',
 		'ride_45',
 		'coolDownRide_5',
 		'postRideStretch_5',
 		'walk_20'
 	],
 	Saturday: [
-		'fullBodyStretch_10',
+		'coreWarmUp_5',
+		'core_5',
 		'lowerBodyStrength_30',
 		'lowerBodyStretch_10',
 		'recoveryRide_20',
@@ -61,7 +68,9 @@ const writeSchedule = async () => {
 	
 	await writeSchedule();
 	
-	let result = await ComboModel.updateOne({_id:'warmUpRide_5'}, combos.warmUpRide_5, {upsert: true, setDefaultsOnInsert: true});
+	let result = await ComboModel.updateOne({_id:'warmUpRide_10'}, combos.warmUpRide_10, {upsert: true, setDefaultsOnInsert: true});
+	console.log(result);
+	result = await ComboModel.updateOne({_id:'warmUpRide_5'}, combos.warmUpRide_5, {upsert: true, setDefaultsOnInsert: true});
 	console.log(result);
 	result = await ComboModel.updateOne({_id:'coolDownRide_5'}, combos.coolDownRide_5, {upsert: true, setDefaultsOnInsert: true});
 	console.log(result);
@@ -92,7 +101,13 @@ const writeSchedule = async () => {
 	console.log(result);
 	result = await ComboModel.updateOne({_id:'lowerBodyStretch_10'}, combos.lowerBodyStretch_10, {upsert: true, setDefaultsOnInsert: true});
 	console.log(result);
+	result = await ComboModel.updateOne({_id:'upperBodyStretch_5'}, combos.upperBodyStretch_5, {upsert: true, setDefaultsOnInsert: true});
+	console.log(result);
+	result = await ComboModel.updateOne({_id:'lowerBodyStretch_5'}, combos.lowerBodyStretch_5, {upsert: true, setDefaultsOnInsert: true});
+	console.log(result);
 	/////// YOGA ///////
+	result = await ComboModel.updateOne({_id:'focusFlowYogaHips_10'}, combos.focusFlowYogaHips_10, {upsert: true, setDefaultsOnInsert: true});
+	console.log(result);
 	result = await ComboModel.updateOne({_id:'focusFlowYoga_10'}, combos.focusFlowYoga_10, {upsert: true, setDefaultsOnInsert: true});
 	console.log(result);
 	result = await ComboModel.updateOne({_id:'focusFlowYoga_20'}, combos.focusFlowYoga_20, {upsert: true, setDefaultsOnInsert: true});
@@ -110,15 +125,27 @@ const writeSchedule = async () => {
 	console.log(result);
 	result = await ComboModel.updateOne({_id:'lowerBodyStrength_30'}, combos.lowerBodyStrength_30, {upsert: true, setDefaultsOnInsert: true});
 	console.log(result);
-	result = await ComboModel.updateOne({_id:'uperBodyStrength_30'}, combos.uperBodyStrength_30, {upsert: true, setDefaultsOnInsert: true});
+	result = await ComboModel.updateOne({_id:'upperBodyStrength_30'}, combos.upperBodyStrength_30, {upsert: true, setDefaultsOnInsert: true});
 	console.log(result);
 	result = await ComboModel.updateOne({_id:'lowerBodyStrength_20'}, combos.lowerBodyStrength_20, {upsert: true, setDefaultsOnInsert: true});
 	console.log(result);
-	result = await ComboModel.updateOne({_id:'uperBodyStrength_20'}, combos.uperBodyStrength_20, {upsert: true, setDefaultsOnInsert: true});
+	result = await ComboModel.updateOne({_id:'upperBodyStrength_20'}, combos.upperBodyStrength_20, {upsert: true, setDefaultsOnInsert: true});
 	console.log(result);
 	result = await ComboModel.updateOne({_id:'armsStrength_30'}, combos.armsStrength_30, {upsert: true, setDefaultsOnInsert: true});
 	console.log(result);
 	result = await ComboModel.updateOne({_id:'armsStrength_20'}, combos.armsStrength_20, {upsert: true, setDefaultsOnInsert: true});
+	console.log(result);
+	result = await ComboModel.updateOne({_id:'chestStrength_20'}, combos.chestStrength_20, {upsert: true, setDefaultsOnInsert: true});
+	console.log(result);
+	result = await ComboModel.updateOne({_id:'core_5'}, combos.core_5, {upsert: true, setDefaultsOnInsert: true});
+	console.log(result);
+	result = await ComboModel.updateOne({_id:'lowerBodyWarmUp_5'}, combos.lowerBodyWarmUp_5, {upsert: true, setDefaultsOnInsert: true});
+	console.log(result);
+	result = await ComboModel.updateOne({_id:'upperBodyWarmUp_5'}, combos.upperBodyWarmUp_5, {upsert: true, setDefaultsOnInsert: true});
+	console.log(result);
+	result = await ComboModel.updateOne({_id:'fullBodyWarmUp_10'}, combos.fullBodyWarmUp_10, {upsert: true, setDefaultsOnInsert: true});
+	console.log(result);
+	result = await ComboModel.updateOne({_id:'coreWarmUp_5'}, combos.coreWarmUp_5, {upsert: true, setDefaultsOnInsert: true});
 	console.log(result);
 	result = await ComboModel.updateOne({_id:'chestStrength_20'}, combos.chestStrength_20, {upsert: true, setDefaultsOnInsert: true});
 	console.log(result);
