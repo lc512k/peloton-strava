@@ -4,7 +4,7 @@ const ComboModel = require('../../models/combo');
 const mongo = require('../../lib/mongo');
 const writeSchedule = async () => {
 	await mongo.client();
-	const result = await ScheduleModel.updateOne({_id:1}, {
+	let result = await ScheduleModel.updateOne({_id:1}, {
 	Monday: [
 		'fullBodyWarmUp_10',
 		'focusFlowYogaHips_10',
@@ -60,7 +60,65 @@ const writeSchedule = async () => {
 		'chestStrength_20',
 		'chestStretch_10'
 	]}, {upsert: true, setDefaultsOnInsert: true});
-	console.log('schedule', result);
+	console.log('schedule A (1)', result);
+
+	result = await ScheduleModel.updateOne({_id:2}, {
+	Monday: [
+		'fullBodyWarmUp_10',
+		'focusFlowYogaHips_10',
+		'restorativeYoga_20',
+		'walk_20'
+	],
+	Tuesday: [
+		'fullBodyWarmUp_10',
+		'core_10',
+		'warmUpRide_10',
+		'ride_30',
+		'coolDownRide_5',
+		'postRideStretch_5',
+		'focusFlowYoga_20'
+	],
+	Wednesday: [
+		'fullBodyWarmUp_10',
+		'fullBodyStretch_10',
+		'warmUpRide_10',
+		'ride_30',
+		'coolDownRide_5',
+		'postRideStretch_5',
+		'walk_20'
+	],
+	Thursday: [
+		'fullBodyWarmUp_10',
+		'core_10',
+		'slowFlowYoga_45',
+		'focusFlowYoga_20'
+	], 
+	Friday: [
+		'fullBodyWarmUp_10',
+		'fullBodyStretch_10',
+		'warmUpRide_5',
+		'ride_20',
+		'ride_15',
+		'coolDownRide_5',
+		'postRideStretch_5',
+		'walk_20'
+	],
+	Saturday: [
+		'fullBodyWarmUp_10',
+		'lowerBodyStrength_30',
+		'lowerBodyStretch_10',
+		'recoveryRide_20',
+		'postRideStretch_5'
+	],
+	Sunday: [
+		'fullBodyStretch_10',
+		'core_10',
+		'armsStrength_20',
+		'armsStretch_10',
+		'chestStrength_20',
+		'chestStretch_10'
+	]}, {upsert: true, setDefaultsOnInsert: true});
+	console.log('schedule B (2)', result);
 }
 
 ( async () => {

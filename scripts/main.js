@@ -118,10 +118,13 @@ const buildStack = async (queryDay, sendToBike) => {
 	console.log(`queryDay: ${queryDay}\n`)
 	await mongo.client();
 
-	let today = moment();
-	tomorrow = queryDay || process.env.TESTDAY || moment().add(1,'days').format('dddd');
+	let tomorrowRaw = moment().add(1,'days')
+	tomorrow = queryDay || process.env.TESTDAY || tomorrowRaw.format('dddd');
 
-	const week = await ScheduleModel.find().lean().exec();
+	const weekOfYear = tomorrowRaw.week();
+	const weekId = weekOfYear % 2 === 0 ? 1 : 2;
+	console.log(`week ${weekOfYear}, weekId ${weekId}`)
+	const week = await ScheduleModel.find({_id: weekId}).lean().exec();
 	const schedule = week[0][tomorrow];
 	console.log(`${tomorrow} schedule:`, schedule)
 
