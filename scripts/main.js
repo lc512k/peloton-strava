@@ -13,7 +13,7 @@ const compare = require('../lib/tools')
 
 const NOW_TO_PAST = -1;
 const PAST_TO_NOW = 1;
-const FROM_DATE = 1546300800; //2019-01-01
+const FROM_DATE = 1559350861; //2019-06-01
 let tomorrow;
 let cookie;
 let weekOfYear;
