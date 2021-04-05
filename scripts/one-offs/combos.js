@@ -39,8 +39,8 @@ exports.slowFlowYoga_45 = build('yoga', 45, {'Aditi Shah': 10, 'Anna Greenberg':
 exports.restorativeYoga_20 = build('yoga', 20, {'Aditi Shah': 10, 'Anna Greenberg': 10, 'Denis Morton': 10}, ['Restorative'])
 exports.restorativeYoga_30 = build('yoga', 30, {'Aditi Shah': 10, 'Anna Greenberg': 10, 'Denis Morton': 10}, ['Restorative'])
 /////// STRENGTH ////////
-exports.core_5 = build('strength', 5, {'Andy Speer': 9, 'Chase Tucker': 10, 'Robin Arzon': 10, 'Adrian Williams': 10}, ['Core']) 
-exports.core_10 = build('strength', 10, {'Andy Speer': 9, 'Chase Tucker': 10, 'Robin Arzon': 10, 'Adrian Williams': 10}, ['Core']) 
+exports.core_5 = build('strength', 5, {'Cody Rigsby': 10, 'Andy Speer': 9, 'Chase Tucker': 10, 'Robin Arzon': 10, 'Adrian Williams': 10}, ['Core']) 
+exports.core_10 = build('strength', 10, {'Cody Rigsby': 10, 'Andy Speer': 9, 'Chase Tucker': 10, 'Robin Arzon': 10, 'Adrian Williams': 10}, ['Core']) 
 exports.lowerBodyStrength_30 = build('strength', 30, {'Andy Speer': 9, 'Chase Tucker': 10, 'Robin Arzon': 10, 'Adrian Williams': 10}, ['Lower Body'], ['Lower Body']) 
 exports.upperBodyStrength_30 = build('strength', 30, {'Andy Speer': 9, 'Chase Tucker': 10, 'Robin Arzon': 10, 'Adrian Williams': 10}, ['Upper Body'], ['Upper Body']) 
 exports.lowerBodyWarmUp_5 = build('strength', 5, {'Andy Speer': 9, 'Chase Tucker': 10, 'Robin Arzon': 10, 'Adrian Williams': 10}, ['Warm Up'], ['Lower Body'], null, true, true) 

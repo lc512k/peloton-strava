@@ -16,6 +16,8 @@ const PAST_TO_NOW = 1;
 const FROM_DATE = 1546300800; //2019-01-01
 let tomorrow;
 let cookie;
+let weekOfYear;
+let weekId;
 
 const WEIGHT = {
 	NOT_MY_STYLE: process.env.NOT_MY_STYLE || -5,
@@ -121,8 +123,8 @@ const buildStack = async (queryDay, sendToBike) => {
 	let tomorrowRaw = moment().add(1,'days')
 	tomorrow = queryDay || process.env.TESTDAY || tomorrowRaw.format('dddd');
 
-	const weekOfYear = tomorrowRaw.week();
-	const weekId = weekOfYear % 2 === 0 ? 1 : 2;
+	weekOfYear = tomorrowRaw.week();
+	weekId = weekOfYear % 2 === 0 ? 1 : 2;
 	console.log(`week ${weekOfYear}, weekId ${weekId}`)
 	const week = await ScheduleModel.find({_id: weekId}).lean().exec();
 	const schedule = week[0][tomorrow];
@@ -188,7 +190,7 @@ const stackClasses = async (query) => {
 		console.log('SEND_TO_BIKE', process.env.SEND_TO_BIKE, 'query', query)
 		graphqlresult = await saveStack(stack);
 	}
-	result = {stack, graphqlresult}
+	result = {stack, graphqlresult, weekOfYear, weekId}
 
 	console.log(tomorrow)
 	console.log({result})

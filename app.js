@@ -1,4 +1,5 @@
 const express = require('express');
+const moment = require('moment');
 const mongo = require('./lib/mongo');
 const main = require('./scripts/main.js');
 const exphbs = require('express-handlebars');
@@ -31,14 +32,14 @@ app.engine('html', handlebarsInstance.engine);
 
 app.get('/schedule', async(req, res) => {
 	await mongo.client();
-	let schedule = await ScheduleModel.findOne({})
-		.limit(1)
-		.lean()
-		.exec();
-
-	let scheduleStr = JSON.stringify(schedule, Object.keys(schedule).sort(), 2);
+	const weekOfYear = moment().add(1,'days').week();
+	const weekId = weekOfYear % 2 === 0 ? 1 : 2;
+	console.log(`week ${weekOfYear}, weekId ${weekId}`)
+	const schedule = await ScheduleModel.findOne({_id: weekId}).lean().exec();
+	console.log({schedule})
+	const scheduleStr = JSON.stringify(schedule, Object.keys(schedule).sort(), 2);
 	console.log({scheduleStr})
-	res.render('schedule', {scheduleStr});
+	res.render('schedule', {scheduleStr, weekId});
 })
 
 app.get('/preview', async (req, res) => { 
