@@ -137,7 +137,25 @@ const buildStack = async (queryDay, sendToBike) => {
 		console.log("**************\nclassTemplate\n**************", classTemplate)
 		let rides = await getRides(classTemplate);
 
-		for (rawRide of rides) {
+	// SEQUENTIAL 
+	// 	for (rawRide of rides) {
+	// 		let totalWeight = 0;
+	// 		rawRide.weights = {}
+	// 		rawRide.weights.instructor = getInstructorWeight(rawRide, classTemplate);
+	// 		rawRide.weights.doneIt = await getDoneItWeight(rawRide, classTemplate);
+	// 		rawRide.weights.randomNoise = getRandomNoise(rawRide, classTemplate);
+	// 		rawRide.weights.recency = getRecencyWeight(rawRide, classTemplate);
+	// 		rawRide.weights.title = getTitleWeight(rawRide, classTemplate);
+	// 		rawRide.weights.ease = getEaseWeight(rawRide, classTemplate);
+	// 		rawRide.weights.fav = getFavWeight(rawRide, classTemplate);
+
+	// 		for (const label in rawRide.weights) {
+	// 			totalWeight += rawRide.weights[label];
+	// 		}
+	// 		rawRide.weight = totalWeight;
+	// 	}
+
+		rides = await Promise.all(rides.map(async (rawRide) => {
 			let totalWeight = 0;
 			rawRide.weights = {}
 			rawRide.weights.instructor = getInstructorWeight(rawRide, classTemplate);
@@ -152,7 +170,8 @@ const buildStack = async (queryDay, sendToBike) => {
 				totalWeight += rawRide.weights[label];
 			}
 			rawRide.weight = totalWeight;
-		}
+			return rawRide;
+		}));
 
 		rides = rides.sort(compare);
 

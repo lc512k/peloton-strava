@@ -6,8 +6,17 @@ const exphbs = require('express-handlebars');
 const security = require('./middleware/security')
 const ScheduleModel = require('./models/schedule');
 const bodyParser = require('body-parser')
+const { performance, PerformanceObserver } = require("perf_hooks")
 
 const app = express();
+
+const perfObserver = new PerformanceObserver((items) => {
+  items.getEntries().forEach((entry) => {
+    console.log(entry)
+  })
+})
+
+perfObserver.observe({ entryTypes: ["measure"], buffer: true })
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.post('/save', async (req, res) => { 
@@ -43,7 +52,11 @@ app.get('/schedule', async(req, res) => {
 })
 
 app.get('/preview', async (req, res) => { 
+
+	performance.mark("perview-start")
 	const result = await main.stackClasses(req.query);
+	performance.mark("perview-end")
+	performance.measure("perview", "perview-start", "perview-end")
 	res.render('preview', result);
 });
 
