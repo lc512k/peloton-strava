@@ -127,6 +127,8 @@ const writeSchedule = async () => {
 	console.log(result);
 	result = await ComboModel.updateOne({_id:'recoveryRide_20'}, combos.recoveryRide_20, {upsert: true, setDefaultsOnInsert: true});
 	console.log(result);
+	result = await ComboModel.updateOne({_id:'ride_15'}, combos.ride_15, {upsert: true, setDefaultsOnInsert: true});
+	console.log(result);
 	result = await ComboModel.updateOne({_id:'ride_20'}, combos.ride_20, {upsert: true, setDefaultsOnInsert: true});
 	console.log(result);
 	result = await ComboModel.updateOne({_id:'ride_30'}, combos.ride_30, {upsert: true, setDefaultsOnInsert: true});
