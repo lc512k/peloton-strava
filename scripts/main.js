@@ -133,7 +133,6 @@ const buildStack = async (queryDay, sendToBike) => {
 
 	weekOfYear = tomorrowRaw.week();
 	weekId = weekOfYear % 2 === 0 ? 1 : 2;
-	weekId = 1;
 	console.log(`week ${weekOfYear}, weekId ${weekId}`)
 	const week = await ScheduleModel.find({_id: weekId}).lean().exec();
 	const schedule = week[0][tomorrow];
