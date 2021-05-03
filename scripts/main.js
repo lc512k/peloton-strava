@@ -205,8 +205,6 @@ const stackClasses = async (query) => {
 	console.log({result})
 
 	mongo.mongoose.connection.close();
-
-console.log({WEIGHT})
 	return result;
 }
 
