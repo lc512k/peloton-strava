@@ -11,8 +11,7 @@ const writeSchedule = async () => {
 		'warmUpRide_5',
 		'ride_20',
 		'coolDownRide_5',
-		'postRideStretch_5',
-		'walk_20'
+		'postRideStretch_5'
 	],
 	Tuesday: [
 		'fullBodyWarmUp_10',
@@ -20,8 +19,7 @@ const writeSchedule = async () => {
 		'warmUpRide_5',
 		'ride_30',
 		'coolDownRide_5',
-		'postRideStretch_5',
-		'walk_20'
+		'postRideStretch_5'
 	],
 	Wednesday: [
 		'coreWarmUp_5',
@@ -33,16 +31,14 @@ const writeSchedule = async () => {
 	],
 	Thursday: [
 		'fullBodyWarmUp_10',
-		'slowFlowYoga_30',
-		'walk_20'
+		'slowFlowYoga_30'
 	], 
 	Friday: [
 		'fullBodyWarmUp_10',
 		'warmUpRide_5',
 		'ride_45',
 		'coolDownRide_5',
-		'postRideStretch_5',
-		'walk_20'
+		'postRideStretch_5'
 	],
 	Saturday: [
 		'fullBodyStrength_45',
@@ -63,8 +59,7 @@ const writeSchedule = async () => {
 		'warmUpRide_5',
 		'ride_20',
 		'coolDownRide_5',
-		'postRideStretch_5',
-		'walk_20'
+		'postRideStretch_5'
 	],
 	Tuesday: [
 		'fullBodyWarmUp_10',
@@ -72,8 +67,7 @@ const writeSchedule = async () => {
 		'warmUpRide_5',
 		'ride_30',
 		'coolDownRide_5',
-		'postRideStretch_5',
-		'walk_20'
+		'postRideStretch_5'
 	],
 	Wednesday: [
 		'coreWarmUp_5',
@@ -85,8 +79,7 @@ const writeSchedule = async () => {
 	],
 	Thursday: [
 		'fullBodyWarmUp_10',
-		'slowFlowYoga_30',
-		'walk_20'
+		'slowFlowYoga_30'
 	], 
 	Friday: [
 		'fullBodyWarmUp_10',
@@ -95,8 +88,7 @@ const writeSchedule = async () => {
 		'ride_20',
 		'ride_15',
 		'coolDownRide_5',
-		'postRideStretch_5',
-		'walk_20'
+		'postRideStretch_5'
 	],
 	Saturday: [
 		'fullBodyStrength_45',

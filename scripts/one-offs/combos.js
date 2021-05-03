@@ -17,7 +17,6 @@ exports.coolDownRide_5 = build('cycling',5, {'Cody Rigsby': 10, 'Tunde Oyeneyin'
 exports.recoveryRide_20 = build('cycling',20, {'Cody Rigsby': 10, 'Tunde Oyeneyin': 8}, ['Low Impact', 'Beginner'], ['Recovery', 'Low Impact'], ['Prenatal']);
 exports.ride_15 = build('cycling',15, {'Cody Rigsby': 10, 'Robin Arzon': 8, 'Robin Arzon': 5}, ['Music', 'Theme', 'Groove'], null, ['Arms', 'Endurance']);
 exports.ride_20 = build('cycling',20, {'Cody Rigsby': 10, 'Robin Arzon': 8, 'Robin Arzon': 5}, ['Music', 'Theme', 'Groove'], null, ['Arms', 'Endurance']);
-exports.ride_15 = build('cycling',15, {'Cody Rigsby': 10, 'Robin Arzon': 8, 'Robin Arzon': 5}, ['Music', 'Theme', 'Groove'], null, ['Arms', 'Endurance']);
 exports.ride_30 = build('cycling',30, {'Cody Rigsby': 10, 'Robin Arzon': 10}, ['Music', 'Theme', 'Live DJ'], null, ['Arms', 'Endurance']);
 exports.ride_45 = build('cycling',45, {'Cody Rigsby': 10, 'Robin Arzon': 10}, ['Music', 'Theme', 'Groove', 'Intervals', 'Live DJ'], null, ['Arms', 'Endurance']);
 exports.ride_60 = build('cycling',60, {'Cody Rigsby': 10, 'Robin Arzon': 10}, ['Music', 'Theme', 'Groove', 'Live DJ'], null, ['Arms', 'Endurance']);
