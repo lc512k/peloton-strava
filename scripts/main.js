@@ -20,12 +20,14 @@ let weekOfYear;
 let weekId;
 
 const WEIGHT = {
-	NOT_MY_STYLE: process.env.NOT_MY_STYLE || -5,
-	MY_STYLE: process.env.MY_STYLE || 1,
-	INSTRUCTOR_MAX: process.env.INSTRUCTOR_MAX ||  5,
-	EASE_MULTIPLIER: process.env.EASE_MULTIPLIER || 0,
-	DONE_IT: process.env.DONE_IT || -5,
-	FAV: process.env.FAV || 2
+	HIIT: process.env.HIIT !== undefined ? Number(process.env.HIIT) : -5,
+	NOT_MY_STYLE: process.env.NOT_MY_STYLE !== undefined ? Number(process.env.NOT_MY_STYLE) : -5,
+	POP: process.env.POP !== undefined ? Number(process.env.POP) : 1,
+	XOXO: process.env.XOXO !== undefined ? Number(process.env.XOXO) : 2,
+	INSTRUCTOR_MAX: process.env.INSTRUCTOR_MAX !== undefined ? Number(process.env.INSTRUCTOR_MAX) : 5,
+	EASE_MULTIPLIER: process.env.EASE_MULTIPLIER !== undefined ? Number(process.env.EASE_MULTIPLIER) : 0,
+	DONE_IT: process.env.DONE_IT !== undefined ? Number(process.env.DONE_IT) : -5,
+	FAV: process.env.FAV !== undefined ? Number(process.env.FAV) : 2,
 }
 
 const getRides = async (classTemplate) => {
@@ -54,11 +56,17 @@ const getRides = async (classTemplate) => {
 const getTitleWeight = (rawRide, classTemplate) => {
 	let result = 0;
 	const title = rawRide.title.toLowerCase();
-	if (title.includes('rock') || title.includes('country')|| title.includes('hiit')){
+	if (title.includes('rock') || title.includes('country')){
 		result += WEIGHT.NOT_MY_STYLE;
 	}
-	if (title.includes('pop') || title.includes('xoxo')){
-		result += WEIGHT.MY_STYLE;
+	if (title.includes('hiit')){
+		result += WEIGHT.HIIT;
+	}
+	if (title.includes('pop')){
+		result += WEIGHT.POP;
+	}
+	if (title.includes('xoxo')){
+		result += WEIGHT.XOXO;
 	}
 	return result;
 }
@@ -136,24 +144,6 @@ const buildStack = async (queryDay, sendToBike) => {
 		const classTemplate = await ComboModel.findOne({_id: classTemplateId}).lean().exec();
 		console.log("**************\nclassTemplate\n**************", classTemplate)
 		let rides = await getRides(classTemplate);
-
-	// SEQUENTIAL 
-	// 	for (rawRide of rides) {
-	// 		let totalWeight = 0;
-	// 		rawRide.weights = {}
-	// 		rawRide.weights.instructor = getInstructorWeight(rawRide, classTemplate);
-	// 		rawRide.weights.doneIt = await getDoneItWeight(rawRide, classTemplate);
-	// 		rawRide.weights.randomNoise = getRandomNoise(rawRide, classTemplate);
-	// 		rawRide.weights.recency = getRecencyWeight(rawRide, classTemplate);
-	// 		rawRide.weights.title = getTitleWeight(rawRide, classTemplate);
-	// 		rawRide.weights.ease = getEaseWeight(rawRide, classTemplate);
-	// 		rawRide.weights.fav = getFavWeight(rawRide, classTemplate);
-
-	// 		for (const label in rawRide.weights) {
-	// 			totalWeight += rawRide.weights[label];
-	// 		}
-	// 		rawRide.weight = totalWeight;
-	// 	}
 
 		rides = await Promise.all(rides.map(async (rawRide) => {
 			let totalWeight = 0;
