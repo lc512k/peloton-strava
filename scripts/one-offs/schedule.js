@@ -11,7 +11,8 @@ const writeSchedule = async () => {
 		'warmUpRide_5',
 		'ride_20',
 		'coolDownRide_5',
-		'postRideStretch_5'
+		'postRideStretch_5',
+		'fullBodyStretch_10'
 	],
 	Tuesday: [
 		'fullBodyWarmUp_10',
@@ -31,7 +32,8 @@ const writeSchedule = async () => {
 	],
 	Thursday: [
 		'fullBodyWarmUp_10',
-		'slowFlowYoga_30'
+		'slowFlowYoga_30',
+		'walk_20'
 	], 
 	Friday: [
 		'fullBodyWarmUp_10',
@@ -59,7 +61,8 @@ const writeSchedule = async () => {
 		'warmUpRide_5',
 		'ride_20',
 		'coolDownRide_5',
-		'postRideStretch_5'
+		'postRideStretch_5',
+		'fullBodyStretch_10'
 	],
 	Tuesday: [
 		'fullBodyWarmUp_10',
@@ -79,7 +82,8 @@ const writeSchedule = async () => {
 	],
 	Thursday: [
 		'fullBodyWarmUp_10',
-		'slowFlowYoga_30'
+		'slowFlowYoga_30',
+		'walk_20'
 	], 
 	Friday: [
 		'fullBodyWarmUp_10',
