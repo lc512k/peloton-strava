@@ -12,7 +12,7 @@ const writeSchedule = async () => {
 		'ride_20',
 		'coolDownRide_5',
 		'postRideStretch_5',
-		'fullBodyStretch_10'
+		'walk_20'
 	],
 	Tuesday: [
 		'fullBodyWarmUp_10',
@@ -20,18 +20,18 @@ const writeSchedule = async () => {
 		'warmUpRide_5',
 		'ride_30',
 		'coolDownRide_5',
-		'postRideStretch_5'
+		'postRideStretch_5',
+		'walk_20'
 	],
 	Wednesday: [
-		'coreWarmUp_5',
-		'core_5',
+		'fullBodyWarmUp_10',
 		'warmUpRide_5',
-		'ride_45_arms',
+		'bootcamp_45',
 		'coolDownRide_5',
-		'postRideStretch_5'
+		'postRideStretch_5',
+		'walk_20'
 	],
 	Thursday: [
-		'fullBodyWarmUp_10',
 		'slowFlowYoga_30',
 		'walk_20'
 	], 
@@ -40,9 +40,11 @@ const writeSchedule = async () => {
 		'warmUpRide_5',
 		'ride_45',
 		'coolDownRide_5',
-		'postRideStretch_5'
+		'postRideStretch_5',
+		'walk_20'
 	],
 	Saturday: [
+		'fullBodyWarmUp_10',
 		'fullBodyStrength_45',
 		'lowerBodyStretch_10',
 		'armsStretch_10',
@@ -61,8 +63,7 @@ const writeSchedule = async () => {
 		'warmUpRide_5',
 		'ride_20',
 		'coolDownRide_5',
-		'postRideStretch_5',
-		'fullBodyStretch_10'
+		'postRideStretch_5'
 	],
 	Tuesday: [
 		'fullBodyWarmUp_10',
@@ -73,8 +74,7 @@ const writeSchedule = async () => {
 		'postRideStretch_5'
 	],
 	Wednesday: [
-		'coreWarmUp_5',
-		'core_5',
+		'fullBodyWarmUp_10',
 		'warmUpRide_5',
 		'ride_45_arms',
 		'coolDownRide_5',
@@ -95,6 +95,7 @@ const writeSchedule = async () => {
 		'postRideStretch_5'
 	],
 	Saturday: [
+		'fullBodyWarmUp_10',
 		'fullBodyStrength_45',
 		'lowerBodyStretch_10',
 		'armsStretch_10',
@@ -165,6 +166,14 @@ const writeSchedule = async () => {
 	result = await ComboModel.updateOne({_id:'restorativeYoga_20'}, combos.restorativeYoga_20, {upsert: true, setDefaultsOnInsert: true});
 	console.log(result);
 	result = await ComboModel.updateOne({_id:'restorativeYoga_30'}, combos.restorativeYoga_30, {upsert: true, setDefaultsOnInsert: true});
+	console.log(result);
+	result = await ComboModel.updateOne({_id:'standingYoga_10'}, combos.standingYoga_10, {upsert: true, setDefaultsOnInsert: true});
+	console.log(result);
+	result = await ComboModel.updateOne({_id:'standingYoga_5'}, combos.standingYoga_5, {upsert: true, setDefaultsOnInsert: true});
+	console.log(result);
+	result = await ComboModel.updateOne({_id:'chairYoga_10'}, combos.chairYoga_10, {upsert: true, setDefaultsOnInsert: true});
+	console.log(result);
+	result = await ComboModel.updateOne({_id:'chairYoga_5'}, combos.chairYoga_5, {upsert: true, setDefaultsOnInsert: true});
 	console.log(result);
 	/////// STRENGTH ////////
 	result = await ComboModel.updateOne({_id:'core_10'}, combos.core_10, {upsert: true, setDefaultsOnInsert: true});

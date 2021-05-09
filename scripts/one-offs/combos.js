@@ -39,6 +39,10 @@ exports.slowFlowYoga_30 = build('yoga', 30, {'Aditi Shah': 10, 'Chelsea Jackson 
 exports.slowFlowYoga_45 = build('yoga', 45, {'Aditi Shah': 10, 'Chelsea Jackson Roberts': 10, 'Anna Greenberg': 9, 'Denis Morton': 9}, ['Slow Flow'])
 exports.restorativeYoga_20 = build('yoga', 20, {'Aditi Shah': 10, 'Chelsea Jackson Roberts': 10, 'Anna Greenberg': 9, 'Denis Morton': 9}, ['Restorative'])
 exports.restorativeYoga_30 = build('yoga', 30, {'Aditi Shah': 10, 'Chelsea Jackson Roberts': 10, 'Anna Greenberg': 9, 'Denis Morton': 9}, ['Restorative'])
+exports.standingYoga_10 = build('yoga', 10, {'Aditi Shah': 9, 'Chelsea Jackson Roberts': 10, 'Anna Greenberg': 8, 'Denis Morton': 9}, ['Yoga Anywhere'],['Standing'])
+exports.standingYoga_5 = build('yoga', 5, {'Aditi Shah': 9, 'Chelsea Jackson Roberts': 10, 'Anna Greenberg': 8, 'Denis Morton': 9}, ['Yoga Anywhere'],['Standing'])
+exports.chairYoga_10 = build('yoga', 10, {'Aditi Shah': 9, 'Chelsea Jackson Roberts': 10, 'Anna Greenberg': 8, 'Denis Morton': 9}, ['Yoga Anywhere'],['Chair'])
+exports.chairYoga_5 = build('yoga', 5, {'Aditi Shah': 9, 'Chelsea Jackson Roberts': 10, 'Anna Greenberg': 8, 'Denis Morton': 9}, ['Yoga Anywhere'],['Chair'])
 /////// STRENGTH ////////
 exports.core_5 = build('strength', 5, {'Cody Rigsby': 10, 'Andy Speer': 9, 'Chase Tucker': 10, 'Robin Arzon': 10, 'Adrian Williams': 10}, ['Core'], null, false, true) 
 exports.core_10 = build('strength', 10, {'Cody Rigsby': 10, 'Andy Speer': 9, 'Chase Tucker': 10, 'Robin Arzon': 10, 'Adrian Williams': 10}, ['Core'], null, false, true) 
