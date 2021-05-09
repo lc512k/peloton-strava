@@ -171,6 +171,10 @@ const writeSchedule = async () => {
 	console.log(result);
 	result = await ComboModel.updateOne({_id:'standingYoga_5'}, combos.standingYoga_5, {upsert: true, setDefaultsOnInsert: true});
 	console.log(result);
+	result = await ComboModel.updateOne({_id:'chairYoga_10'}, combos.chairYoga_10, {upsert: true, setDefaultsOnInsert: true});
+	console.log(result);
+	result = await ComboModel.updateOne({_id:'chairYoga_5'}, combos.chairYoga_5, {upsert: true, setDefaultsOnInsert: true});
+	console.log(result);
 	/////// STRENGTH ////////
 	result = await ComboModel.updateOne({_id:'core_10'}, combos.core_10, {upsert: true, setDefaultsOnInsert: true});
 	console.log(result);
