@@ -12,115 +12,46 @@ const weekA = {
 		'ride_20',
 		'coolDownRide_5',
 		'postRideStretch_5',
-<<<<<<< HEAD
 		'warmUpRide_5',
 		'ride_30',
 		'coolDownRide_5'
-=======
-		'walk_20'
 	],
 	Tuesday: [
-		'fullBodyWarmUp_10',
-		'fullBodyStretch_10',
+		'coreWarmUp_5',
+		'core_10',
+		'fullBodyStretch_5',
 		'warmUpRide_5',
-		'ride_30',
+		'ride_20',
 		'coolDownRide_5',
 		'postRideStretch_5',
-		'walk_20'
+		'upperBodyStrength_30'
 	],
 	Wednesday: [
-		'fullBodyWarmUp_10',
-		'warmUpRide_5',
-		'bootcamp_45',
-		'coolDownRide_5',
-		'postRideStretch_5',
+		'slowFlowYoga_30',
 		'walk_20'
 	],
 	Thursday: [
-		'slowFlowYoga_30',
-		'walk_20'
-	], 
-	Friday: [
-		'fullBodyWarmUp_10',
+		'coreWarmUp_5',
+		'core_10',
+		'fullBodyStretch_5',
 		'warmUpRide_5',
-		'ride_45',
+		'ride_20',
 		'coolDownRide_5',
 		'postRideStretch_5',
-		'walk_20'
-	],
-	Saturday: [
-		'fullBodyWarmUp_10',
-		'fullBodyStrength_45',
-		'lowerBodyStretch_10',
-		'armsStretch_10',
-		'chestStretch_10'
-	],
-	Sunday: [
-		'fullBodyStretch_10',
-		'restorativeYoga_30'
-	]}, {upsert: true, setDefaultsOnInsert: true});
-	console.log('schedule A (1)', result);
-
-	result = await ScheduleModel.updateOne({_id:2}, {
-	Monday: [
-		'fullBodyWarmUp_10',
+		'warmUpRide_5',
+		'ride_10',
+		'coolDownRide_5'
+	], 
+	Friday: [
+		'coreWarmUp_5',
 		'core_10',
+		'fullBodyStretch_5',
 		'warmUpRide_5',
 		'ride_20',
 		'coolDownRide_5',
 		'postRideStretch_5'
->>>>>>> origin/main
-	],
-	Tuesday: [
-		// 'coreWarmUp_5',
-		// 'core_10',
-		// 'fullBodyStretch_5',
-		// 'warmUpRide_5',
-		// 'ride_20',
-		// 'coolDownRide_5',
-		// 'postRideStretch_5',
-		// 'upperBodyStrength_30'
-	],
-	Wednesday: [
-<<<<<<< HEAD
-		// 'slowFlowYoga_30',
-		// 'walk_20'
-=======
-		'fullBodyWarmUp_10',
-		'warmUpRide_5',
-		'ride_45_arms',
-		'coolDownRide_5',
-		'postRideStretch_5'
->>>>>>> origin/main
-	],
-	Thursday: [
-		// 'coreWarmUp_5',
-		// 'core_10',
-		// 'fullBodyStretch_5',
-		// 'warmUpRide_5',
-		// 'ride_20',
-		// 'coolDownRide_5',
-		// 'postRideStretch_5',
-		// 'ride_10'
-	], 
-	Friday: [
-		// 'coreWarmUp_5',
-		// 'core_10',
-		// 'fullBodyStretch_5',
-		// 'warmUpRide_5',
-		// 'ride_20',
-		// 'coolDownRide_5',
-		// 'postRideStretch_5'
 	],
 	Saturday: [
-<<<<<<< HEAD
-=======
-		'fullBodyWarmUp_10',
-		'fullBodyStrength_45',
-		'lowerBodyStretch_10',
-		'armsStretch_10',
-		'chestStretch_10'
->>>>>>> origin/main
 	],
 	Sunday: [
 	]
