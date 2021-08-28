@@ -2,108 +2,67 @@ const combos = require('./combos');
 const ScheduleModel = require('../../models/schedule');
 const ComboModel = require('../../models/combo');
 const mongo = require('../../lib/mongo');
+
+const weekA = {
+	Monday: [
+		'coreWarmUp_5',
+		'core_10',
+		'fullBodyStretch_5',
+		'warmUpRide_5',
+		'ride_20',
+		'coolDownRide_5',
+		'postRideStretch_5',
+		'warmUpRide_5',
+		'ride_30',
+		'coolDownRide_5'
+	],
+	Tuesday: [
+		// 'coreWarmUp_5',
+		// 'core_10',
+		// 'fullBodyStretch_5',
+		// 'warmUpRide_5',
+		// 'ride_20',
+		// 'coolDownRide_5',
+		// 'postRideStretch_5',
+		// 'upperBodyStrength_30'
+	],
+	Wednesday: [
+		// 'slowFlowYoga_30',
+		// 'walk_20'
+	],
+	Thursday: [
+		// 'coreWarmUp_5',
+		// 'core_10',
+		// 'fullBodyStretch_5',
+		// 'warmUpRide_5',
+		// 'ride_20',
+		// 'coolDownRide_5',
+		// 'postRideStretch_5',
+		// 'ride_10'
+	], 
+	Friday: [
+		// 'coreWarmUp_5',
+		// 'core_10',
+		// 'fullBodyStretch_5',
+		// 'warmUpRide_5',
+		// 'ride_20',
+		// 'coolDownRide_5',
+		// 'postRideStretch_5'
+	],
+	Saturday: [
+	],
+	Sunday: [
+	]
+}
+
+const weekB = weekA;
+
 const writeSchedule = async () => {
 	await mongo.client();
-	let result = await ScheduleModel.updateOne({_id:1}, {
-	Monday: [
-		'fullBodyWarmUp_10',
-		'core_10',
-		'warmUpRide_5',
-		'ride_20',
-		'coolDownRide_5',
-		'postRideStretch_5',
-		'fullBodyStretch_10'
-	],
-	Tuesday: [
-		'fullBodyWarmUp_10',
-		'fullBodyStretch_10',
-		'warmUpRide_5',
-		'ride_30',
-		'coolDownRide_5',
-		'postRideStretch_5'
-	],
-	Wednesday: [
-		'coreWarmUp_5',
-		'core_5',
-		'warmUpRide_5',
-		'ride_45_arms',
-		'coolDownRide_5',
-		'postRideStretch_5'
-	],
-	Thursday: [
-		'fullBodyWarmUp_10',
-		'slowFlowYoga_30',
-		'walk_20'
-	], 
-	Friday: [
-		'fullBodyWarmUp_10',
-		'warmUpRide_5',
-		'ride_45',
-		'coolDownRide_5',
-		'postRideStretch_5'
-	],
-	Saturday: [
-		'fullBodyStrength_45',
-		'lowerBodyStretch_10',
-		'armsStretch_10',
-		'chestStretch_10'
-	],
-	Sunday: [
-		'fullBodyStretch_10',
-		'restorativeYoga_30'
-	]}, {upsert: true, setDefaultsOnInsert: true});
+	let result = await ScheduleModel.updateOne({_id:1}, weekA, {upsert: true, setDefaultsOnInsert: true});
 	console.log('schedule A (1)', result);
 
-	result = await ScheduleModel.updateOne({_id:2}, {
-	Monday: [
-		'fullBodyWarmUp_10',
-		'core_10',
-		'warmUpRide_5',
-		'ride_20',
-		'coolDownRide_5',
-		'postRideStretch_5',
-		'fullBodyStretch_10'
-	],
-	Tuesday: [
-		'fullBodyWarmUp_10',
-		'fullBodyStretch_10',
-		'warmUpRide_5',
-		'ride_30',
-		'coolDownRide_5',
-		'postRideStretch_5'
-	],
-	Wednesday: [
-		'coreWarmUp_5',
-		'core_5',
-		'warmUpRide_5',
-		'ride_45_arms',
-		'coolDownRide_5',
-		'postRideStretch_5'
-	],
-	Thursday: [
-		'fullBodyWarmUp_10',
-		'slowFlowYoga_30',
-		'walk_20'
-	], 
-	Friday: [
-		'fullBodyWarmUp_10',
-		'core_10',
-		'warmUpRide_5',
-		'ride_20',
-		'ride_15',
-		'coolDownRide_5',
-		'postRideStretch_5'
-	],
-	Saturday: [
-		'fullBodyStrength_45',
-		'lowerBodyStretch_10',
-		'armsStretch_10',
-		'chestStretch_10'
-	],
-	Sunday: [
-		'fullBodyStretch_10',
-		'restorativeYoga_30'
-	]}, {upsert: true, setDefaultsOnInsert: true});
+	result = await ScheduleModel.updateOne({_id:2}, weekB, {upsert: true, setDefaultsOnInsert: true});
 	console.log('schedule B (2)', result);
 }
 
@@ -140,6 +99,8 @@ const writeSchedule = async () => {
 	result = await ComboModel.updateOne({_id:'armsStretch_10'}, combos.armsStretch_10, {upsert: true, setDefaultsOnInsert: true});
 	console.log(result);
 	result = await ComboModel.updateOne({_id:'chestStretch_10'}, combos.chestStretch_10, {upsert: true, setDefaultsOnInsert: true});
+	console.log(result);
+	result = await ComboModel.updateOne({_id:'fullBodyStretch_5'}, combos.fullBodyStretch_5, {upsert: true, setDefaultsOnInsert: true});
 	console.log(result);
 	result = await ComboModel.updateOne({_id:'fullBodyStretch_10'}, combos.fullBodyStretch_10, {upsert: true, setDefaultsOnInsert: true});
 	console.log(result);
