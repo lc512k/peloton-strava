@@ -13,7 +13,7 @@ const compare = require('../lib/tools')
 
 const NOW_TO_PAST = -1;
 const PAST_TO_NOW = 1;
-const FROM_DATE = 1546304461; //2019-01-01
+const FROM_DATE = 1577836800; //2020-01-01
 let tomorrow;
 let cookie;
 let weekOfYear;
@@ -23,7 +23,8 @@ const WEIGHT = {
 	HIIT: process.env.HIIT !== undefined ? Number(process.env.HIIT) : -5,
 	NOT_MY_STYLE: process.env.NOT_MY_STYLE !== undefined ? Number(process.env.NOT_MY_STYLE) : -5,
 	POP: process.env.POP !== undefined ? Number(process.env.POP) : 1,
-	XOXO: process.env.XOXO !== undefined ? Number(process.env.XOXO) : 2,
+	XOXO: process.env.XOXO !== undefined ? Number(process.env.XOXO) : 1,
+	CLIMB: process.env.CLIMB !== undefined ? Number(process.env.CLIMB) : 2,
 	INSTRUCTOR_MAX: process.env.INSTRUCTOR_MAX !== undefined ? Number(process.env.INSTRUCTOR_MAX) : 5,
 	EASE_MULTIPLIER: process.env.EASE_MULTIPLIER !== undefined ? Number(process.env.EASE_MULTIPLIER) : 0,
 	DONE_IT: process.env.DONE_IT !== undefined ? Number(process.env.DONE_IT) : -5,
@@ -45,7 +46,7 @@ const getRides = async (classTemplate) => {
 		original_air_time: {$gt: FROM_DATE}
 	})
 	.sort({original_air_time: NOW_TO_PAST})
-	.limit(10000)
+	.limit(5000)
 	.lean()
 	.exec();
 
@@ -67,6 +68,9 @@ const getTitleWeight = (rawRide, classTemplate) => {
 	}
 	if (title.includes('xoxo')){
 		result += WEIGHT.XOXO;
+	}
+	if (title.includes('climb')){
+		result += WEIGHT.CLIMB;
 	}
 	return result;
 }
@@ -139,6 +143,20 @@ const buildStack = async (queryDay, sendToBike) => {
 	console.log(`${tomorrow} schedule:`, schedule)
 
 	const response = [];
+
+	// const scheduleCounts = {}
+	// schedule.map(item => {
+	// 	const str = schedule.toString();
+	// 	if (str.indexOf(item) === str.lastIndexOf(item)) {
+	// 		scheduleCounts[item] = 0;
+	// 	}
+	// 	else {
+	// 		scheduleCounts[item] = null;
+	// 	}
+
+	// })
+	// console.log({scheduleCounts})
+	// exit(0)
 
 	for (let classTemplateId of schedule) {
 		const classTemplate = await ComboModel.findOne({_id: classTemplateId}).lean().exec();

@@ -12,10 +12,10 @@ const run = async () => {
 		headers: {
 			'Peloton-Platform': 'web',
 			'Cookie': process.env.COOKIE
-		},
-		redirect: 'follow'
+		}
 	};
 	const response = await fetch(process.env.ARCHIVE_URL, requestOptions);
+	console.log('response', response);
 	const result = await response.json();
 	console.log('loaded', result.data);
 	const rides = result.data;
