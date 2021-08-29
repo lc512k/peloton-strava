@@ -19,7 +19,7 @@ module.exports = [{
 		name: 'core_10',
 		discipline: 'strength',
 		duration: 10,
-		instructors: {'Matty Maggiacomo': 10, 'Jess Sims': 10, 'Andy Speer': 10, 'Adrian Williams': 10, 'Ben Aldis': 9},
+		instructors: {'Matty Maggiacomo': 2, 'Jess Sims': 2,'Rad Lopez': 2, 'Andy Speer': 1, 'Adrian Williams': 1, 'Ben Aldis': 1},
 		classType: ['Core'],
 		repeatsOk: true, 
 		random: true
