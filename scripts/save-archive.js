@@ -6,8 +6,8 @@ const RideModel = require('../models/ride');
 
 const run = async () => {
 	await mongo.client();
-	
-	var requestOptions = {
+	//f0f617fad11d44d7a34f61a13462d289 is an unavailable cody ride
+	const requestOptions = {
 		method: 'GET',
 		headers: {
 			'Peloton-Platform': 'web',

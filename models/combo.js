@@ -4,10 +4,10 @@ const comboSchema = new mongoose.Schema({
 	_id: String,
 	classType: [String],
 	duration: Number,
-	titleIncludeStrings: [String],
-	titleExcludeStrings: [String],
+	include: [String],
+	exclude: [String],
 	discipline: String,
-	preferredInstructors: Object,
+	instructors: Object,
 	repeatsOK: Boolean,
 	random: Boolean
 });

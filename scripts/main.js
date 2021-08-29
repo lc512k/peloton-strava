@@ -32,8 +32,8 @@ const WEIGHT = {
 }
 
 const getRides = async (classTemplate) => {
-	const include = classTemplate.titleIncludeStrings ? classTemplate.titleIncludeStrings.join('|') : '';
-	const exclude = classTemplate.titleExcludeStrings || [];
+	const include = classTemplate.include ? classTemplate.include.join('|') : '';
+	const exclude = classTemplate.exclude || [];
 	console.log({exclude})
 	console.log({include})
 	const nin = exclude.map(item => new RegExp(item));
@@ -79,8 +79,8 @@ const getInstructorWeight = (rawRide, classTemplate) => {
 	let result = 0;
 	const name = instructorsHash[rawRide.instructor_id] ? instructorsHash[rawRide.instructor_id].name : 'NOT FOUND';
 
-	if (Object.keys(classTemplate.preferredInstructors).includes(name)){
-		result += classTemplate.preferredInstructors[name];
+	if (Object.keys(classTemplate.instructors).includes(name)){
+		result += classTemplate.instructors[name];
 	}
 	else {
 		result += -WEIGHT.INSTRUCTOR_MAX
