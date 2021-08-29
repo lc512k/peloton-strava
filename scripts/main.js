@@ -46,7 +46,7 @@ const getRides = async (classTemplate) => {
 		original_air_time: {$gt: FROM_DATE}
 	})
 	.sort({original_air_time: NOW_TO_PAST})
-	.limit(5000)
+	.limit(500)
 	.lean()
 	.exec();
 
