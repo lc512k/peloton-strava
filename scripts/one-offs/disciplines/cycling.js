@@ -6,7 +6,7 @@ module.exports = [{
 		classType: ['Low Impact'], 
 		include: ['Warm Up'],
 		exclude: ['Cool Down'], 
-		repeatsOk: true, 
+		repeatsOK: true, 
 		random: true
 	},
 	{
@@ -17,7 +17,7 @@ module.exports = [{
 		classType: ['Low Impact'], 
 		include: ['Warm Up'],
 		exclude: ['Cool Down'], 
-		repeatsOk: true, 
+		repeatsOK: true, 
 		random: true
 	},
 	{
@@ -28,7 +28,7 @@ module.exports = [{
 		classType: ['Low Impact'],
 		include: ['Cool Down'], 
 		exclude: ['Warm Up'], 
-		repeatsOk: true, 
+		repeatsOK: true, 
 		random: true
 	},
 	{
