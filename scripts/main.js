@@ -26,9 +26,9 @@ const WEIGHT = {
 	XOXO: process.env.XOXO !== undefined ? Number(process.env.XOXO) : 1,
 	CLIMB: process.env.CLIMB !== undefined ? Number(process.env.CLIMB) : 2,
 	INSTRUCTOR_MAX: process.env.INSTRUCTOR_MAX !== undefined ? Number(process.env.INSTRUCTOR_MAX) : 5,
-	EASE_MULTIPLIER: process.env.EASE_MULTIPLIER !== undefined ? Number(process.env.EASE_MULTIPLIER) : 0,
-	DONE_IT: process.env.DONE_IT !== undefined ? Number(process.env.DONE_IT) : -5,
-	FAV: process.env.FAV !== undefined ? Number(process.env.FAV) : 2,
+	EASE_MULTIPLIER: process.env.EASE_MULTIPLIER !== undefined ? Number(process.env.EASE_MULTIPLIER) : 1,
+	DONE_IT: process.env.DONE_IT !== undefined ? Number(process.env.DONE_IT) : 3,
+	FAV: process.env.FAV !== undefined ? Number(process.env.FAV) : 5,
 }
 
 const getRides = async (classTemplate) => {
@@ -94,11 +94,8 @@ const getDoneItWeight = async (rawRide, classTemplate) => {
 	const doneIt = workout.length > 0;
 
 	if (doneIt) {
-		result = WEIGHT.DONE_IT;
-		if (classTemplate.repeatsOK) {
-			result *= -1;
-		}	
-		return result;
+		console.log('DONEIT',{classTemplate})
+		return classTemplate.repeatsOK ? 0 : -WEIGHT.DONE_IT;
 	}
 	return 0;
 }

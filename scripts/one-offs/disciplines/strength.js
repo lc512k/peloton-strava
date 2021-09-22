@@ -5,7 +5,7 @@ module.exports = [{
 		instructors: {'Matty Maggiacomo': 10, 'Jess Sims': 10, 'Andy Speer': 10, 'Adrian Williams': 10, 'Ben Aldis': 9},
 		classType: ['Warm Up'], 
 		include: ['Core'],
-		repeatsOk: true, 
+		repeatsOK: true, 
 		random: true
 	},{
 		name: 'core_5',
@@ -13,16 +13,12 @@ module.exports = [{
 		duration: 5,
 		instructors: {'Matty Maggiacomo': 10, 'Jess Sims': 10, 'Andy Speer': 10, 'Adrian Williams': 10, 'Ben Aldis': 9},
 		classType: ['Core'],
-		repeatsOk: true, 
-		random: true
 	},{
 		name: 'core_10',
 		discipline: 'strength',
 		duration: 10,
 		instructors: {'Matty Maggiacomo': 2, 'Jess Sims': 2,'Rad Lopez': 2, 'Andy Speer': 1, 'Adrian Williams': 1, 'Ben Aldis': 1},
 		classType: ['Core'],
-		repeatsOk: true, 
-		random: true
 	},{
 		name: 'upperBodyWarmUp_5',
 		discipline: 'strength',
@@ -30,7 +26,7 @@ module.exports = [{
 		instructors: {'Jess Sims': 10, 'Adrian Williams': 10, 'Andy Speer': 10, 'Ben Aldis': 9},
 		classType: ['Warm Up'], 
 		include: ['Upper Body'],
-		repeatsOk: true, 
+		repeatsOK: true, 
 		random: true
 	},{
 		name: 'upperBodyStrength_30',

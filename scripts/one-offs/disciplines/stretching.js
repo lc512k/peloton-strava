@@ -5,7 +5,7 @@ module.exports = [{
 		instructors: {'Cody Rigsby': 10, 'Tunde Oyeneyin': 10, 'Robin Arzon': 9},
 		classType: ['Pre & Post-Ride Stretch'], 
 		include: ['Post'],
-		repeatsOk: true, 
+		repeatsOK: true, 
 		random: true
 	},{
 		name: 'fullBodyStretch_5',
@@ -14,15 +14,23 @@ module.exports = [{
 		instructors: {'Matty Maggiacomo': 10, 'Ben Aldis': 10, 'Adrian Williams': 10, 'Hannah Corbin': 8},
 		classType: ['Full Body Stretch'], 
 		exclude: ['Post-Ride', 'Warm'],
-		repeatsOk: true, 
+		repeatsOK: true, 
 	},{
 		name: 'fullBodyStretch_10',
 		discipline: 'stretching',
 		duration: 10,
-		instructors: {'Adrian Williams': 10, 'Hannah Corbin': 8, 'Matty Maggiacomo': 10, 'Ben Aldis': 10},
+		instructors: {'Adrian Williams': 10, 'Selena Samuela': 10, 'Matty Maggiacomo': 10, 'Ben Aldis': 10},
 		classType: ['Full Body Stretch'], 
 		exclude: ['Post-Ride', 'Warm'],
-		repeatsOk: true, 
+		repeatsOK: true, 
+	},{
+		name: 'upperBodyStretch_10',
+		discipline: 'stretching',
+		duration: 10,
+		instructors: {'Selena Samuela': 10, 'Hannah Corbin': 8, 'Matty Maggiacomo': 9, 'Ben Aldis': 10},
+		classType: ['Full Body Stretch'], 
+		exclude: ['Post-Ride', 'Warm'],
+		repeatsOK: true, 
 	},{
 		name: 'postRunStretch_5',
 		discipline: 'stretching',
@@ -30,7 +38,7 @@ module.exports = [{
 		instructors: {'Matty Maggiacomo': 1},
 		classType: ['Pre & Post-Run Stretch'], 
 		include: ['Post'],
-		repeatsOk: true,
+		repeatsOK: true,
 		random: true
 	}
 ]
