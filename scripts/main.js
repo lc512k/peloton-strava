@@ -13,7 +13,7 @@ const compare = require('../lib/tools')
 
 const NOW_TO_PAST = -1;
 const PAST_TO_NOW = 1;
-const FROM_DATE = 1577836800; //2020-01-01
+const FROM_DATE = process.env.FROM_DATE !== undefined ? Number(process.env.FROM_DATE) : 1577836800; //2020-01-01
 let tomorrow;
 let cookie;
 let weekOfYear;
