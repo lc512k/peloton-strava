@@ -1,4 +1,4 @@
-const mongo = require('../lib/mongo');
+const mongo = require('../../lib/mongo');
 const fetch = require('node-fetch');
 
 const cycling = require('../meta/raw/all-cycling-20210219.js').cycling.data;
