@@ -59,6 +59,9 @@ app.get('/preview', async (req, res) => {
 	performance.measure("perview", "perview-start", "perview-end")
 	res.render('preview', result);
 });
+app.get('/test', async (req, res) => { 
+	res.render('test', {});
+});
 
 mongo.client()
 	.then(() => {
