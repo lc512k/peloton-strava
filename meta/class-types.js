@@ -1046,7 +1046,16 @@ const classTypes = [
 		"fitness_discipline": "yoga",
 		"is_active": false,
 		"list_order": 132
+	},
+	{
+		"id": "57dbf6f9a4904a9f80e302380855bdb7",
+		"name": "Warm Up/Cool Down",
+		"display_name": "Warm Up/Cool Down",
+		"fitness_discipline": "cycling",
+		"is_active": false,
+		"list_order": 133
 	}
+
 ]
 
 module.exports = classTypes;

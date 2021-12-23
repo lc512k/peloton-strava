@@ -17,7 +17,7 @@ module.exports = [{
 		name: 'core_10',
 		discipline: 'strength',
 		duration: 10,
-		instructors: {'Matty Maggiacomo': 2, 'Jess Sims': 2,'Rad Lopez': 2, 'Andy Speer': 1, 'Adrian Williams': 1, 'Ben Aldis': 1},
+		instructors: {'Matty Maggiacomo': 2, 'Jess Sims': 2,'Emma Lovewell': 10, 'Andy Speer': 1, 'Adrian Williams': 1, 'Ben Aldis': 1},
 		classType: ['Core'],
 	},{
 		name: 'upperBodyWarmUp_5',
@@ -29,12 +29,41 @@ module.exports = [{
 		repeatsOK: true, 
 		random: true
 	},{
+		name: 'lowerBodyWarmUp_5',
+		discipline: 'strength',
+		duration: 5,
+		instructors: {'Jess Sims': 10, 'Adrian Williams': 10, 'Andy Speer': 10, 'Ben Aldis': 9},
+		classType: ['Warm Up'], 
+		include: ['Lower Body'],
+		repeatsOK: true, 
+		random: true
+	},{
 		name: 'upperBodyStrength_30',
 		discipline: 'strength',
 		duration: 30,
 		instructors: {'Jess Sims': 10, 'Adrian Williams': 10, 'Andy Speer': 10},
 		classType: ['Upper Body'],
 		include: ['Upper Body']
+	},{
+		name: 'armsStrength_20',
+		discipline: 'strength',
+		duration: 20,
+		instructors: {'Andy Speer': 10, 'Adrian Williams': 10},
+		classType: ['Upper Body'],
+		include: ['Arms']
+	},{
+		name: 'chestStrength_20',
+		discipline: 'strength',
+		duration: 20,
+		instructors: {'Andy Speer': 10, 'Adrian Williams': 10},
+		classType: ['Upper Body'],
+		include: ['Chest']
+	},{
+		name: 'lowerBodyStrength_20',
+		discipline: 'strength',
+		duration: 20,
+		instructors: {'Andy Speer': 10, 'Adrian Williams': 10},
+		classType: ['Lower Body']
 	}
 ]
 

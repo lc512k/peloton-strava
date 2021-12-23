@@ -2,8 +2,20 @@ module.exports = [{
 		name: 'slowFlowYoga_30',
 		discipline: 'yoga',
 		duration: 30,
-		instructors: {'Aditi Shah': 9, 'Chelsea Jackson Roberts': 10, 'Anna Greenberg': 8},
+		instructors: {'Aditi Shah': 5, 'Chelsea Jackson Roberts': 10, 'Anna Greenberg': 2},
 		classType: ['Slow Flow']
+	},{
+		name: 'slowFlowYoga_20',
+		discipline: 'yoga',
+		duration: 20,
+		instructors: {'Aditi Shah': 5, 'Chelsea Jackson Roberts': 10, 'Anna Greenberg': 2},
+		classType: ['Slow Flow']
+	},{
+		name: 'standingYoga_10',
+		discipline: 'yoga',
+		duration: 10,
+		instructors: {'Aditi Shah': 5, 'Chelsea Jackson Roberts': 10, 'Anna Greenberg': 2},
+		classType: ['Yoga Anywhere']
 	}
 ]
 
