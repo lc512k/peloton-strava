@@ -168,7 +168,7 @@ const buildStack = async (queryDay, sendToBike) => {
 			rawRide.weights.randomNoise = getRandomNoise(rawRide, classTemplate);
 			rawRide.weights.recency = getRecencyWeight(rawRide, classTemplate);
 			rawRide.weights.title = getTitleWeight(rawRide, classTemplate);
-			rawRide.weights.ease = getEaseWeight(rawRide, classTemplate);
+			// rawRide.weights.ease = getEaseWeight(rawRide, classTemplate);
 			rawRide.weights.fav = getFavWeight(rawRide, classTemplate);
 
 			for (const label in rawRide.weights) {
