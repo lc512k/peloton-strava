@@ -22,9 +22,7 @@ const weekA = {
 		'fullBodyStretch_10'
 	],
 	Wednesday: [
-		'warmUpRide_5',
-		'ride_30',
-		'coolDownRide_5',
+		'ride_45',
 		'postRideStretch_5',
 		'core_10',
 		'armsStrength_20',
