@@ -64,6 +64,24 @@ module.exports = [{
 		duration: 20,
 		instructors: {'Andy Speer': 10, 'Adrian Williams': 10},
 		classType: ['Lower Body']
+	},{
+		name: 'lowerBodyStrength_30',
+		discipline: 'strength',
+		duration: 30,
+		instructors: {'Andy Speer': 10, 'Adrian Williams': 10},
+		classType: ['Lower Body']
+	},{
+		name: 'fullBodyStrength_30',
+		discipline: 'strength',
+		duration: 30,
+		instructors: {'Andy Speer': 10, 'Adrian Williams': 10, 'Robin Arzon':9},
+		classType: ['Full Body']
+	},{
+		name: 'fullBodyStrength_45',
+		discipline: 'strength',
+		duration: 45,
+		instructors: {'Andy Speer': 10, 'Adrian Williams': 10, 'Robin Arzon':9},
+		classType: ['Full Body']
 	}
 ]
 
