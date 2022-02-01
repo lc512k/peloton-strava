@@ -4,54 +4,47 @@ const ComboModel = require('../../models/combo');
 const mongo = require('../../lib/mongo');
 
 const weekA = {
-	Monday: [
-		'warmUpRide_5',
-		'ride_30',
-		'coolDownRide_5',
-		'postRideStretch_5',
-		'core_10',
-		'chestStrength_20',
-		'upperBodyStretch_5'
-	],
-	Tuesday: [
-		'warmUpRide_5',
-		'ride_30',
-		'coolDownRide_5',
-		'postRideStretch_5',
-		'core_5',
-		'fullBodyStretch_10'
-	],
-	Wednesday: [
-		'ride_45',
-		'postRideStretch_5',
-		'core_10',
-		'armsStrength_20',
-		'upperBodyStretch_5'
-	],
-	Thursday: [
-		'slowFlowYoga_20',
-		'standingYoga_10'
-	], 
-	Friday: [
-		'core_10',
-		'lowerBodyWarmUp_5',
-		'lowerBodyStrength_20',
-		'lowerBodyStretch_10',
-		'warmUpRide_5',
-		'coolDownRide_5',
-		'postRideStretch_5'
-	],
-	Saturday: [
-		'recoveryRide_10',
-		'postRideStretch_5',
-		'upperBodyWarmUp_5',
-		'upperBodyStrength_30',
-		'upperBodyStretch_10'
-	],
-	Sunday: [
-		'standingYoga_10',
-		'fullBodyStretch_10'
-	]
+	  "Friday": [
+	    "fullBodyStrength_30",
+	    "fullBodyStretch_10"
+	  ],
+	  "Monday": [
+	    "warmUpRide_5",
+	    "ride_30",
+	    "coolDownRide_5",
+	    "postRideStretch_5",
+	    "chestStrength_20",
+	    "upperBodyStretch_5"
+	  ],
+	  "Saturday": [
+	    "standingYoga_10",
+	    "recoveryRide_10",
+	    "postRideStretch_5"
+	  ],
+	  "Sunday": [
+	    "standingYoga_10",
+	    "fullBodyStretch_10"
+	  ],
+	  "Thursday": [
+	    "warmUpRide_5",
+	    "ride_30",
+	    "coolDownRide_5",
+	    "postRideStretch_5"
+	  ],
+	  "Tuesday": [
+	    "warmUpRide_5",
+	    "ride_45",
+	    "coolDownRide_5",
+	    "postRideStretch_5"
+	  ],
+	  "Wednesday": [
+	    "warmUpRide_5",
+	    "ride_20",
+	    "coolDownRide_5",
+	    "postRideStretch_5",
+	    "upperBodyStrength_30",
+	    "upperBodyStretch_5"
+	  ]	
 }
 
 const weekB = weekA;
