@@ -44,13 +44,13 @@ const weekA = {
 	  "Saturday": [
 	    "standingYoga_10",
 	    "recoveryRide_20",
-	    "postRideStretch_5"
+	    "postRideStretch_5",
 	    "fullBodyStretch_10"
 	  ],
 	  "Sunday": [
 	    "standingYoga_10",
 	    "recoveryRide_20",
-	    "postRideStretch_5"
+	    "postRideStretch_5",
 	    "fullBodyStretch_10"
 	  ]
 }
