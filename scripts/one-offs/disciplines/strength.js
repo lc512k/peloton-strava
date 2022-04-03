@@ -11,7 +11,7 @@ module.exports = [{
 		name: 'core_5',
 		discipline: 'strength',
 		duration: 5,
-		instructors: {'Matty Maggiacomo': 10, 'Jess Sims': 10, 'Andy Speer': 10, 'Adrian Williams': 10, 'Ben Aldis': 9},
+		instructors: {'Emma Lovewell': 10, 'Matty Maggiacomo': 9, 'Andy Speer': 10, 'Adrian Williams': 10, 'Rad Lopez': 9},
 		classType: ['Core'],
 	},{
 		name: 'core_10',
