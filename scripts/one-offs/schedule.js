@@ -38,6 +38,9 @@ const weekA = {
 	    "slowFlowYoga_20"
 	  ],
 	  "Friday": [
+	    "standingYoga_5",
+	    "core_5",
+	    "upperBodyStretch_5",
 	    "fullBodyStrength_30",
 	    "fullBodyStretch_10"
 	  ],
@@ -45,13 +48,13 @@ const weekA = {
 	    "standingYoga_10",
 	    "recoveryRide_20",
 	    "postRideStretch_5",
-	    "fullBodyStretch_10"
+	    "upperBodyStretch_10"
 	  ],
 	  "Sunday": [
 	    "standingYoga_10",
 	    "recoveryRide_20",
 	    "postRideStretch_5",
-	    "fullBodyStretch_10"
+	    "upperBodyStretch_10"
 	  ]
 }
 
