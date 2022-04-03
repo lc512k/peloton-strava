@@ -42,7 +42,7 @@ module.exports = [{
 	},{
 		name: 'upperBodyStretch_5',
 		discipline: 'stretching',
-		duration: 10,
+		duration: 5,
 		instructors: {'Selena Samuela': 10, 'Hannah Corbin': 8, 'Matty Maggiacomo': 9, 'Ben Aldis': 10},
 		classType: ['Upper Body Stretch'], 
 		exclude: ['Post-Ride', 'Warm'],
