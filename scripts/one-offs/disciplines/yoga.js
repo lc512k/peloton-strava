@@ -16,6 +16,12 @@ module.exports = [{
 		duration: 10,
 		instructors: {'Aditi Shah': 5, 'Chelsea Jackson Roberts': 10, 'Anna Greenberg': 2},
 		classType: ['Yoga Anywhere']
+	},{
+		name: 'standingYoga_5',
+		discipline: 'yoga',
+		duration: 5,
+		instructors: {'Aditi Shah': 5, 'Chelsea Jackson Roberts': 10, 'Anna Greenberg': 2},
+		classType: ['Yoga Anywhere']
 	}
 ]
 
