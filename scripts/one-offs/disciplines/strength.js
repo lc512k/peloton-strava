@@ -11,7 +11,7 @@ module.exports = [{
 		name: 'core_5',
 		discipline: 'strength',
 		duration: 5,
-		instructors: {'Matty Maggiacomo': 10, 'Jess Sims': 10, 'Andy Speer': 10, 'Adrian Williams': 10, 'Ben Aldis': 9},
+		instructors: {'Emma Lovewell': 10, 'Matty Maggiacomo': 9, 'Andy Speer': 10, 'Adrian Williams': 10, 'Rad Lopez': 9},
 		classType: ['Core'],
 	},{
 		name: 'core_10',
@@ -64,6 +64,24 @@ module.exports = [{
 		duration: 20,
 		instructors: {'Andy Speer': 10, 'Adrian Williams': 10},
 		classType: ['Lower Body']
+	},{
+		name: 'lowerBodyStrength_30',
+		discipline: 'strength',
+		duration: 30,
+		instructors: {'Andy Speer': 10, 'Adrian Williams': 10},
+		classType: ['Lower Body']
+	},{
+		name: 'fullBodyStrength_30',
+		discipline: 'strength',
+		duration: 30,
+		instructors: {'Andy Speer': 10, 'Adrian Williams': 10, 'Robin Arzon':9},
+		classType: ['Full Body']
+	},{
+		name: 'fullBodyStrength_45',
+		discipline: 'strength',
+		duration: 45,
+		instructors: {'Andy Speer': 10, 'Adrian Williams': 10, 'Robin Arzon':9},
+		classType: ['Full Body']
 	}
 ]
 
