@@ -1,2 +1,2 @@
 # peloton-strava
-sync gps coordinates to strava from peloton outdoor walks
+git push heroku main

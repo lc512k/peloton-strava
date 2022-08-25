@@ -1,0 +1,30 @@
+{
+  "Friday": [
+    "warmUpRide_5",
+    "ride_30",
+    "coolDownRide_5",
+    "postRideStretch_5"
+  ],
+  "Monday": [
+    "upperBodyStrength_30",
+    "upperBodyStretch_10"
+  ],
+  "Saturday": [
+  ],
+  "Sunday": [
+    "lowerBodyStrength_20",
+    "lowerBodyStretch_10"
+  ],
+  "Thursday": [
+  ],
+  "Tuesday": [
+    "warmUpRide_5",
+    "ride_30",
+    "coolDownRide_5",
+    "postRideStretch_5"
+  ],
+  "Wednesday": [
+  ],
+  "__v": 0,
+  "_id": "2"
+}
